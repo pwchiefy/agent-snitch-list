@@ -1,0 +1,57 @@
+name: "Update Existing Tool"
+description: "Report a change in a tool's telemetry behavior"
+title: "[Update]: "
+labels: ["update", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Telemetry behavior changes with new releases. Help us keep the list accurate.
+  - type: input
+    id: tool-name
+    attributes:
+      label: Tool Name
+      description: "Must match an existing entry in the list"
+      placeholder: "e.g., Cursor"
+    validations:
+      required: true
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: What Changed?
+      options:
+        - "Telemetry was added"
+        - "Telemetry was removed"
+        - "Default state changed (e.g., ON → Opt-in)"
+        - "New analytics provider added"
+        - "New disable method available"
+        - "Data collection scope changed"
+        - "New red flag discovered"
+        - "Red flag resolved"
+        - "Other"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "Which version introduced this change?"
+      placeholder: "e.g., v2.1.0"
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: "Describe the change and provide evidence"
+      placeholder: |
+        In v2.1.0, the tool switched from PostHog to Amplitude.
+        See commit: https://github.com/org/repo/commit/abc123
+        New telemetry code at: src/analytics/amplitude.ts
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: "Links to commits, code, or documentation"
+    validations:
+      required: true

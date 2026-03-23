@@ -1,0 +1,118 @@
+name: "Add New Tool"
+description: "Submit a new AI coding tool for telemetry audit"
+title: "[New Tool]: "
+labels: ["new-tool", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping expand the snitch list! Please provide as much detail as possible.
+  - type: input
+    id: tool-name
+    attributes:
+      label: Tool Name
+      placeholder: "e.g., SuperCoder AI"
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      placeholder: "https://supercoder.ai"
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: GitHub Repository
+      description: "Full URL, or 'Closed source' if not available"
+      placeholder: "https://github.com/org/repo"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Coding Agent
+        - IDE Extension
+        - Code Review
+        - Code Generation
+        - Security Scanning
+        - Agent Framework
+        - Terminal AI
+    validations:
+      required: true
+  - type: dropdown
+    id: telemetry-default
+    attributes:
+      label: Default Telemetry State
+      options:
+        - "ON by default"
+        - "Opt-in (asks user)"
+        - "No telemetry"
+        - "Conditional (depends on deployment)"
+        - "SaaS-inherent"
+        - "Unknown"
+    validations:
+      required: true
+  - type: input
+    id: analytics-providers
+    attributes:
+      label: Analytics Providers
+      description: "What analytics SDKs or services are used?"
+      placeholder: "e.g., PostHog, Sentry, Amplitude"
+  - type: input
+    id: disable-method
+    attributes:
+      label: How to Disable
+      description: "Env var, config flag, CLI option, or 'No documented opt-out'"
+      placeholder: "e.g., DISABLE_TELEMETRY=1"
+  - type: dropdown
+    id: collects-code
+    attributes:
+      label: Does it collect code or prompts?
+      options:
+        - "No"
+        - "Yes - code snippets"
+        - "Yes - prompts"
+        - "Yes - both"
+        - "Ephemeral only (not retained)"
+        - "Unknown"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: |
+        How did you verify this? Include at least one:
+        - File paths in the repo where telemetry code lives
+        - Code snippets showing telemetry initialization
+        - Network traffic captures
+        - Links to privacy policy or documentation
+      placeholder: |
+        Found in src/telemetry.ts:
+        ```
+        posthog.init('phc_xxx', { api_host: 'https://app.posthog.com' })
+        ```
+    validations:
+      required: true
+  - type: textarea
+    id: data-collected
+    attributes:
+      label: What Data Is Collected
+      description: "List the specific data points sent"
+      placeholder: |
+        - OS and platform info
+        - Anonymous user ID
+        - Feature usage events
+        - Error reports
+    validations:
+      required: true
+  - type: textarea
+    id: red-flags
+    attributes:
+      label: Red Flags (if any)
+      description: "Anything concerning? No opt-out? Persists after disable? Collects PII?"
+      placeholder: "None identified"

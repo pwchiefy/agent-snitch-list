@@ -1,0 +1,191 @@
+name: Validate Tools Data
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install tsx
+        run: npm install -g tsx
+
+      - name: Validate tools.json schema
+        run: |
+          node --input-type=module <<'SCRIPT'
+          import { readFileSync, readdirSync } from "node:fs";
+          import { resolve } from "node:path";
+
+          const TOOLS_JSON = resolve("data", "tools.json");
+
+          // ── 1. Parse JSON ──────────────────────────────────────────────
+          let tools;
+          try {
+            tools = JSON.parse(readFileSync(TOOLS_JSON, "utf-8"));
+          } catch (err) {
+            console.error(`Failed to parse ${TOOLS_JSON}: ${err.message}`);
+            process.exit(1);
+          }
+
+          if (!Array.isArray(tools)) {
+            console.error("tools.json must be a JSON array");
+            process.exit(1);
+          }
+
+          // ── 2. Schema validation ───────────────────────────────────────
+          const REQUIRED_STRING_FIELDS = [
+            "slug",
+            "name",
+            "category",
+            "defaultState",
+            "disableMethod",
+            "website",
+            "lastVerified",
+          ];
+          const REQUIRED_BOOL_FIELDS = ["openSource", "collectsCode"];
+          const REQUIRED_ARRAY_FIELDS = ["analyticsProviders"];
+
+          const VALID_CATEGORIES = [
+            "coding-agent",
+            "ide-extension",
+            "code-review",
+            "code-generation",
+            "security-scanning",
+            "agent-framework",
+            "terminal-ai",
+          ];
+
+          const VALID_STATES = [
+            "on",
+            "off",
+            "opt-in",
+            "conditional",
+            "saas",
+            "unknown",
+          ];
+
+          const errors = [];
+
+          tools.forEach((tool, idx) => {
+            const prefix = `tools[${idx}] (${tool.slug || tool.name || "???"})`;
+
+            for (const field of REQUIRED_STRING_FIELDS) {
+              if (typeof tool[field] !== "string" || tool[field].trim() === "") {
+                errors.push(`${prefix}: missing or invalid string field "${field}"`);
+              }
+            }
+
+            for (const field of REQUIRED_BOOL_FIELDS) {
+              if (typeof tool[field] !== "boolean") {
+                errors.push(`${prefix}: missing or invalid boolean field "${field}"`);
+              }
+            }
+
+            for (const field of REQUIRED_ARRAY_FIELDS) {
+              if (!Array.isArray(tool[field])) {
+                errors.push(`${prefix}: missing or invalid array field "${field}"`);
+              }
+            }
+
+            if (tool.category && !VALID_CATEGORIES.includes(tool.category)) {
+              errors.push(
+                `${prefix}: invalid category "${tool.category}". Valid: ${VALID_CATEGORIES.join(", ")}`
+              );
+            }
+
+            if (tool.defaultState && !VALID_STATES.includes(tool.defaultState)) {
+              errors.push(
+                `${prefix}: invalid defaultState "${tool.defaultState}". Valid: ${VALID_STATES.join(", ")}`
+              );
+            }
+
+            // slug must be a valid filename component
+            if (tool.slug && !/^[a-z0-9]([a-z0-9-]*[a-z0-9])?$/.test(tool.slug)) {
+              errors.push(
+                `${prefix}: slug "${tool.slug}" must be lowercase alphanumeric with hyphens`
+              );
+            }
+
+            // lastVerified must look like a date
+            if (tool.lastVerified && !/^\d{4}-\d{2}-\d{2}$/.test(tool.lastVerified)) {
+              errors.push(
+                `${prefix}: lastVerified "${tool.lastVerified}" must be YYYY-MM-DD format`
+              );
+            }
+          });
+
+          // ── 3. Check for duplicate slugs ───────────────────────────────
+          const slugs = tools.map((t) => t.slug).filter(Boolean);
+          const seen = new Set();
+          for (const slug of slugs) {
+            if (seen.has(slug)) {
+              errors.push(`Duplicate slug: "${slug}"`);
+            }
+            seen.add(slug);
+          }
+
+          if (errors.length > 0) {
+            console.error("Schema validation failed:\n");
+            errors.forEach((e) => console.error(`  - ${e}`));
+            process.exit(1);
+          }
+
+          console.log(`Schema validation passed for ${tools.length} tools.`);
+          SCRIPT
+
+      - name: Check matching tool detail files
+        run: |
+          node --input-type=module <<'SCRIPT'
+          import { readFileSync, existsSync } from "node:fs";
+          import { resolve } from "node:path";
+
+          const tools = JSON.parse(readFileSync("data/tools.json", "utf-8"));
+          const missing = [];
+
+          for (const tool of tools) {
+            const mdPath = resolve("tools", `${tool.slug}.md`);
+            if (!existsSync(mdPath)) {
+              missing.push(`tools/${tool.slug}.md (for "${tool.name}")`);
+            }
+          }
+
+          if (missing.length > 0) {
+            console.error("Missing tool detail files:\n");
+            missing.forEach((m) => console.error(`  - ${m}`));
+            process.exit(1);
+          }
+
+          console.log(`All ${tools.length} tools have matching .md files.`);
+          SCRIPT
+
+      - name: Check README is up to date
+        run: |
+          # Generate what the README should look like
+          npx tsx scripts/generate-readme.ts > /tmp/generated-readme.md
+
+          # Compare with current README (if it exists)
+          if [ -f README.md ]; then
+            if ! diff -q README.md /tmp/generated-readme.md > /dev/null 2>&1; then
+              echo "README.md is out of date. Run 'npx tsx scripts/generate-readme.ts --write' to update."
+              echo ""
+              echo "Diff:"
+              diff README.md /tmp/generated-readme.md || true
+              exit 1
+            else
+              echo "README.md is up to date."
+            fi
+          else
+            echo "WARNING: README.md does not exist yet. Run 'npx tsx scripts/generate-readme.ts --write' to create it."
+            exit 1
+          fi
