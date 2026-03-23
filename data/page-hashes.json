@@ -1,0 +1,149 @@
+{
+  "aider": {
+    "url": "https://aider.chat/docs/more/analytics.html",
+    "sha256": "948ae09d6bba6ce80212dda713c8ad812587e8028d89de49243054c18bc3249c",
+    "textSnippet": "Skip to main content Installation Usage Connecting to LLMs Configuration Troubleshooting Screen recordings Example chat transcripts More info Git integration Supported languages Repository map Scripti",
+    "lastChecked": "2026-03-23T17:41:44.099Z",
+    "lastChanged": "2026-03-23T17:41:44.099Z"
+  },
+  "continue": {
+    "url": "https://docs.continue.dev/telemetry",
+    "sha256": "b8c02305823f0ffe470f0a4addcbb2daf281478d53e2b371c11c0b01fdea848c",
+    "textSnippet": "Page not found Back to docs",
+    "lastChecked": "2026-03-23T17:41:47.010Z",
+    "lastChanged": "2026-03-23T17:41:47.010Z"
+  },
+  "warp-ai": {
+    "url": "https://www.warp.dev/privacy",
+    "sha256": "4cf0976f05b204bebc5b042a6a9b6e79daaee05377413a569e7a6d61fd25003d",
+    "textSnippet": "Introducing Oz: the orchestration platform for cloud agents.  Learn more.  Terminal  Oz  NEW  Resources  Pricing  Careers  Enterprise  Contact sales  Download  for Mac  Your privacy while using Warp  ",
+    "lastChecked": "2026-03-23T17:41:50.328Z",
+    "lastChanged": "2026-03-23T17:41:50.328Z"
+  },
+  "blackbox-ai": {
+    "url": "https://www.blackbox.ai/privacy",
+    "sha256": "37843479438d65551c567f4346e63b9d5da2e773617f06193586ddf457ecbaa8",
+    "textSnippet": "PLATFORM CLI AI in your terminal IDE AI-native code editor CLOUD Always-on agent execution API Frontier + open-source models, one endpoint MOBILE Ship code from your pocket BUILDER Prompt-to-app gener",
+    "lastChecked": "2026-03-23T17:42:09.937Z",
+    "lastChanged": "2026-03-23T17:42:09.937Z"
+  },
+  "tabby": {
+    "url": "https://tabby.tabbyml.com/docs/configuration",
+    "sha256": "7624be5cca79220205598d4165391a70da4bded3c4b77a8d2ed7eb640d75f54c",
+    "textSnippet": "Skip to main content Docs Blog API GitHub 👋 What's Tabby 🚀 Quick Start 🔧 Administration Upgrade Data Backup Manage License Answer Engine Mail Delivery Single Sign-On Usage Analytics Context Provide",
+    "lastChecked": "2026-03-23T17:42:13.323Z",
+    "lastChanged": "2026-03-23T17:42:13.323Z"
+  },
+  "supermaven": {
+    "url": "https://supermaven.com/privacy",
+    "sha256": "42bc78826192f21cb901705c302d8377421e758636d33c18a22319b323b92c9a",
+    "textSnippet": "Privacy Policy Item 1 Item 2 Item 3 Pricing About Blog Login Download Try Supermaven for free Download Contact Us Privacy Policy Code Policy Terms of Service Language Examples",
+    "lastChecked": "2026-03-23T17:42:16.158Z",
+    "lastChanged": "2026-03-23T17:42:16.158Z"
+  },
+  "claude-code": {
+    "url": "https://docs.anthropic.com/en/docs/claude-code/privacy",
+    "sha256": "0963bf775961bb3d19165bb678206bfeff2ced61be69e652421a9df342e5eb68",
+    "textSnippet": "Skip to main content Claude Code Docs home page English Search... ⌘K Ask AI Claude Developer Platform Claude Code on the Web Getting started Build with Claude Code Deployment Administration Configurat",
+    "lastChecked": "2026-03-23T17:43:20.851Z",
+    "lastChanged": "2026-03-23T17:43:20.851Z"
+  },
+  "github-copilot": {
+    "url": "https://docs.github.com/en/copilot/overview-of-github-copilot/about-github-copilot-individual#about-privacy",
+    "sha256": "346f37be1ffa1174ae8f2a1936a6775f60059a6d29904bd8e3abbd0768cf006b",
+    "textSnippet": "Skip to main content GitHub Docs Version: Free, Pro, & Team Search or askCopilot Sign up GitHub Copilot/Get started/What is GitHub Copilot? What is GitHub Copilot?  Learn what Copilot is and what you ",
+    "lastChecked": "2026-03-23T17:43:23.730Z",
+    "lastChanged": "2026-03-23T17:43:23.730Z"
+  },
+  "magic-ai": {
+    "url": "https://magic.dev/privacy",
+    "sha256": "3f7765caa442be834d61bb0d55af6edd2b992a6d53665b43d68353fc2e5db209",
+    "textSnippet": "Blog Careers Safety Error 404: Page Not Found  The page you’re looking for does not exist.  Follow Magic on  Vulnerability Disclosure AGI Readiness Policy Magic AI, Inc. Copyright © 2026 All rights re",
+    "lastChecked": "2026-03-23T17:43:41.750Z",
+    "lastChanged": "2026-03-23T17:43:41.750Z"
+  },
+  "amazon-q-developer": {
+    "url": "https://aws.amazon.com/privacy/",
+    "sha256": "19d75cbb296079d5ccce96a0884b966d0e2c5616a8481a280e7dc8eecf09feea",
+    "textSnippet": "Skip to main content English Contact us AWS Marketplace Support My account Discover AWS Products Solutions Pricing Resources  Search  Sign in to console Create account Privacy Notice  Last Updated: Oc",
+    "lastChecked": "2026-03-23T17:43:45.584Z",
+    "lastChanged": "2026-03-23T17:43:45.584Z"
+  },
+  "v0": {
+    "url": "https://vercel.com/legal/privacy-policy",
+    "sha256": "889e4c67548473c1a06ebe1bbfb6a6de285bce3e93d556f8c4039259bf14f121",
+    "textSnippet": "Skip to content Products AI Cloud v0  Build applications with AI  AI SDK  The AI Toolkit for TypeScript  AI Gateway  One endpoint, all your models  Vercel Agent  An agent that knows your stack  Sandbo",
+    "lastChecked": "2026-03-23T17:44:35.899Z",
+    "lastChanged": "2026-03-23T17:44:35.899Z"
+  },
+  "vs-intellicode": {
+    "url": "https://privacy.microsoft.com/privacystatement",
+    "sha256": "2791759f4454c9a0c9082a856770d58a64af58a15822ff85b0e6783b21c8a8ed",
+    "textSnippet": "Skip to main content Microsoft Privacy Privacy dashboard Privacy report Privacy settings Privacy Statement Consumer Health Data Privacy Policy All Microsoft Microsoft Privacy Statement  Last Updated: ",
+    "lastChecked": "2026-03-23T17:44:39.063Z",
+    "lastChanged": "2026-03-23T17:44:39.063Z"
+  },
+  "cursor": {
+    "url": "https://cursor.com/privacy",
+    "sha256": "185877ccf485d4db89a2b2ff50ba7705f3ee0906a4b173c6a99414cc7332f326",
+    "textSnippet": "Skip to content Cursor Product ↓ Enterprise Pricing Resources ↓ Sign in Contact sales Download Terms of Service Privacy Policy Privacy Policy Last updated Oct 6, 2025 Table of Contents ↑ Introduction ",
+    "lastChecked": "2026-03-23T17:44:42.916Z",
+    "lastChanged": "2026-03-23T17:44:42.916Z"
+  },
+  "windsurf": {
+    "url": "https://codeium.com/privacy-policy",
+    "sha256": "8915d110656eacdab2dfd247af9952ca4a412869243637afba66edec5e14a762",
+    "textSnippet": "PRODUCTS ENTERPRISE PRICING BLOG RESOURCES COMPANY DOWNLOAD Privacy Policy  PRIVACY POLICY  Last updated: October 21, 2025  Thank you for choosing to be part of our community at Exafunction, Inc. (\"Co",
+    "lastChecked": "2026-03-23T17:44:46.335Z",
+    "lastChanged": "2026-03-23T17:44:46.335Z"
+  },
+  "phind": {
+    "url": "https://www.phind.com/privacy",
+    "sha256": "4b9054a945769f12b82c4fb98e9eb38d9040a5a245e65ed6469318f71beeaf33",
+    "textSnippet": "404: NOT_FOUND Code: DEPLOYMENT_NOT_FOUND ID: cle1::5ssvr-1774287886785-8d6e117426f6  This deployment cannot be found. For more information and troubleshooting, see our documentation.",
+    "lastChecked": "2026-03-23T17:44:49.435Z",
+    "lastChanged": "2026-03-23T17:44:49.435Z"
+  },
+  "perplexity": {
+    "url": "https://www.perplexity.ai/privacy",
+    "sha256": "20c649eb914ab7eab7ce4dfeb5eb08977f9cd4738eb132be01f000ebb5236580",
+    "textSnippet": "Blog  Research  Careers  Help Center  Ask anything  Perplexity Legal Hub  Information related to our terms of service, policies, intellectual property, and compliance.  Legal overview  Platform User T",
+    "lastChecked": "2026-03-23T17:44:52.623Z",
+    "lastChanged": "2026-03-23T17:44:52.623Z"
+  },
+  "replit-agent": {
+    "url": "https://replit.com/site/privacy",
+    "sha256": "1efae6ccfd91f0a946b0fa5452dc7330552db849c986f6abca4e186201ef2c92",
+    "textSnippet": "Products For Work Resources Pricing Careers Contact sales Log in Sign up Replit Privacy Policy  Last updated: 02/24/2025 to update URL links.  Replit, Inc. and its affiliates (“Replit,” “we,” “our,” a",
+    "lastChecked": "2026-03-23T17:45:11.092Z",
+    "lastChanged": "2026-03-23T17:45:11.092Z"
+  },
+  "tabnine": {
+    "url": "https://www.tabnine.com/privacy",
+    "sha256": "a246a231e3a2e6d2227eed9109d679582ed2dfb89fc14cc47e9758c67e526b78",
+    "textSnippet": "LIVE EVENT Trusted AI For The Enterprise March 25 11 am PT Sign Up Now Products How it works Pricing Docs Resources Log in Get a demo // Privacy Policy // Last update: September 12, 2024 Tabnine Ltd. ",
+    "lastChecked": "2026-03-23T17:45:37.351Z",
+    "lastChanged": "2026-03-23T17:45:37.351Z"
+  },
+  "mistral-vibe": {
+    "url": "https://mistral.ai/privacy/",
+    "sha256": "cbc75f3b6344cbd2243273b12df7fe4ca39b823625011f8a181daba50ad02018",
+    "textSnippet": "Products Solutions Research Blog Customers Company Contact Sales Try Studio Uh-oh! You've gotten lost in a pixel.  Please check the URL for errors or explore our site using the navigation menu. Here a",
+    "lastChecked": "2026-03-23T17:45:41.025Z",
+    "lastChanged": "2026-03-23T17:45:41.025Z"
+  },
+  "bito-ai": {
+    "url": "https://bito.ai/privacy",
+    "sha256": "d777895e7d1c054c702bb44aa30a93e81fc2a9f33ae1cb1ad00cfafd2700303f",
+    "textSnippet": "Skip to content AI Architect tops SWE-Bench Pro with 39% higher task success. See results  Products Resources Security Pricing Docs Sign in Start free Bito Privacy Statement  Last updated: May 21, 202",
+    "lastChecked": "2026-03-23T17:45:58.738Z",
+    "lastChanged": "2026-03-23T17:45:58.738Z"
+  },
+  "trae": {
+    "url": "https://trae.ai/privacy",
+    "sha256": "e41527fc115939647f95898a1cb58bcfea31fb21900c919067f08ead4c4739fd",
+    "textSnippet": "Product Pricing Blog Docs Changelog Community Log in Download TRAE IDE he eal I ngineer Ship Faster with TRAE  Understand. Execute. Deliver.  TRAE is your 10x AI Engineer who can independently build s",
+    "lastChecked": "2026-03-23T17:46:33.906Z",
+    "lastChanged": "2026-03-23T17:46:33.906Z"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "agent-snitch-list",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scan": "npx tsx scripts/scan-telemetry.ts",
+    "scan:seed": "npx tsx scripts/scan-telemetry.ts --dry-run",
+    "scan:issues": "npx tsx scripts/scan-telemetry.ts --create-issues",
+    "readme": "npx tsx scripts/generate-readme.ts --write"
+  },
+  "dependencies": {
+    "playwright": "^1.58.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "@types/node": "^22.0.0"
+  }
+}

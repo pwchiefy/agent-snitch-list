@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.agentsnitch.scanner</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/npx</string>
+        <string>tsx</string>
+        <string>/Users/xpr/Developer/agent-snitch-list/scripts/scan-telemetry.ts</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/xpr/Developer/agent-snitch-list</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>0</integer>
+        <key>Hour</key>
+        <integer>6</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>/Users/xpr</string>
+        <key>PLAYWRIGHT_BROWSERS_PATH</key>
+        <string>/Users/xpr/Library/Caches/ms-playwright</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/xpr/.local/log/agent-snitch-scanner.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/xpr/.local/log/agent-snitch-scanner.err</string>
+
+    <key>ThrottleInterval</key>
+    <integer>3600</integer>
+
+    <key>Nice</key>
+    <integer>10</integer>
+</dict>
+</plist>
