@@ -1,6 +1,6 @@
 # Agent Snitch List 🕵️
 
-**Who's watching you code?**
+**is your clanker a snitch?**
 
 A community-maintained audit of telemetry, analytics, and data collection in 100+ AI coding tools.
 
@@ -39,12 +39,12 @@ A community-maintained audit of telemetry, analytics, and data collection in 100
 
 ## Why This Exists
 
-Every time you type a line of code in an AI-powered editor, something might be listening. Crash reporters, usage analytics, PostHog events, Sentry breadcrumbs, custom telemetry endpoints — the modern AI coding stack is riddled with data collection that most developers never audit.
+Every time you type a line of code in an AI-powered editor, something might be listening. Crash reporters, usage analytics, PostHog events, Sentry breadcrumbs, custom telemetry endpoints — the modern AI coding stack is riddled with data collection. 
 
 **This project exists because:**
 
-1. **Enterprise procurement teams** need a single reference to evaluate tools before rolling them out to hundreds of engineers. "Does it phone home?" shouldn't require a week of source-code archaeology.
-2. **Security-conscious developers** deserve to know exactly what leaves their machine — especially when working on proprietary code.
+1. **Small Enterprise procurement teams** need a single reference to evaluate tools before rolling them out to hundreds of engineers.
+2. **Security-conscious non-technical agentic developers** deserve to know exactly what leaves their machine — especially when working on proprietary code.
 3. **Tool vendors** should compete on privacy. Transparency creates a race to the top.
 
 We are not anti-telemetry. We are anti-surprise. If a tool collects data, that's fine — as long as it's documented, disclosed, and easy to disable.
@@ -161,9 +161,7 @@ We are not anti-telemetry. We are anti-surprise. If a tool collects data, that's
 
 ---
 
-## Red Flags — Hall of Shame
-
-Some tools earned special attention for practices that go beyond routine analytics. These are the ones that made us raise an eyebrow — or both.
+## Red Flags
 
 | Tool | What We Found | Severity |
 |------|--------------|----------|
@@ -182,7 +180,7 @@ Some tools earned special attention for practices that go beyond routine analyti
 
 ## Privacy Champions
 
-These tools prove that you can build great AI coding software without phoning home. Zero telemetry, zero analytics, zero tracking. They deserve your attention — and your stars.
+Zero telemetry, zero analytics, zero tracking. 
 
 | Tool | Why It's Great |
 |------|---------------|
@@ -200,8 +198,6 @@ These tools prove that you can build great AI coding software without phoning ho
 
 ## How to Contribute
 
-We welcome contributions from developers, security researchers, and yes — even tool vendors who want to set the record straight.
-
 - **Add a new tool**: [Open an issue](https://github.com/pwchiefy/agent-snitch-list/issues/new?template=new-tool.yml) or submit a PR
 - **Update existing data**: [Open an issue](https://github.com/pwchiefy/agent-snitch-list/issues/new?template=update-tool.yml) or submit a PR
 - **Dispute a finding**: [Use the dispute template](https://github.com/pwchiefy/agent-snitch-list/issues/new?template=dispute.yml) — we take accuracy seriously
@@ -212,7 +208,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines, evidence standards, 
 
 ## Methodology
 
-Every entry in this list is backed by evidence: source code analysis, network traffic inspection, dependency audits, or official documentation review. We don't guess — we verify.
+Every entry in this list is backed by evidence: source code analysis, network traffic inspection, dependency audits, or official documentation review. 
 
 Our research process covers:
 - GitHub code search for telemetry patterns (`posthog`, `segment`, `sentry`, `amplitude`, `rudderstack`, `mixpanel`, etc.)
