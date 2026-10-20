@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install tsx
-        run: npm install -g tsx
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
 
       - name: Validate tools.json schema
         run: |
@@ -44,17 +44,28 @@ jobs:
           }
 
           // ── 2. Schema validation ───────────────────────────────────────
+          // Mirrors the schema of data/tools.json (see scripts/generate-readme.ts).
           const REQUIRED_STRING_FIELDS = [
             "slug",
             "name",
             "category",
             "defaultState",
-            "disableMethod",
-            "website",
+            "repoStatus",
             "lastVerified",
           ];
-          const REQUIRED_BOOL_FIELDS = ["openSource", "collectsCode"];
-          const REQUIRED_ARRAY_FIELDS = ["analyticsProviders"];
+          // Booleans that may be null when the behaviour could not be verified.
+          const NULLABLE_BOOL_FIELDS = ["telemetry", "collectsCode", "collectsPrompts"];
+          // Strings that may be null (e.g. no repo, nothing to disable).
+          const NULLABLE_STRING_FIELDS = [
+            "repo",
+            "repoUrl",
+            "disableMethod",
+            "dataCollected",
+            "privacyUrl",
+            "sourceEvidence",
+            "notes",
+          ];
+          const REQUIRED_ARRAY_FIELDS = ["analyticsProviders", "redFlags"];
 
           const VALID_CATEGORIES = [
             "coding-agent",
@@ -64,6 +75,7 @@ jobs:
             "security-scanning",
             "agent-framework",
             "terminal-ai",
+            "mcp-server",
           ];
 
           const VALID_STATES = [
@@ -74,6 +86,8 @@ jobs:
             "saas",
             "unknown",
           ];
+
+          const VALID_REPO_STATUSES = ["open-source", "closed-source", "partial", "archived"];
 
           const errors = [];
 
@@ -86,10 +100,22 @@ jobs:
               }
             }
 
-            for (const field of REQUIRED_BOOL_FIELDS) {
-              if (typeof tool[field] !== "boolean") {
-                errors.push(`${prefix}: missing or invalid boolean field "${field}"`);
+            for (const field of NULLABLE_BOOL_FIELDS) {
+              if (!(field in tool) || (tool[field] !== null && typeof tool[field] !== "boolean")) {
+                errors.push(`${prefix}: missing or invalid boolean-or-null field "${field}"`);
               }
+            }
+
+            for (const field of NULLABLE_STRING_FIELDS) {
+              if (!(field in tool) || (tool[field] !== null && typeof tool[field] !== "string")) {
+                errors.push(`${prefix}: missing or invalid string-or-null field "${field}"`);
+              }
+            }
+
+            if (tool.repoStatus && !VALID_REPO_STATUSES.includes(tool.repoStatus)) {
+              errors.push(
+                `${prefix}: invalid repoStatus "${tool.repoStatus}". Valid: ${VALID_REPO_STATUSES.join(", ")}`
+              );
             }
 
             for (const field of REQUIRED_ARRAY_FIELDS) {

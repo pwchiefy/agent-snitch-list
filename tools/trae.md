@@ -8,68 +8,50 @@
 | Telemetry | Yes |
 | Default State | ON |
 | Analytics Providers | ByteDance internal infrastructure (custom endpoints) |
-| Disable Method | Settings toggle exists but telemetry persists after opt-out (see Red Flags) |
-| Collects Code | Unknown (likely, given network traffic volume) |
-| Collects Prompts | Unknown (likely, given network traffic volume) |
-| Last Verified | 2026-03-23 |
+| Disable Method | Enable Privacy Mode (stops chat data use for analytics/training; Trae says some telemetry continues for functionality and performance). The IDE telemetry toggle only covers VS Code-framework telemetry. Network-level blocking for anything else |
+| Collects Code | Yes |
+| Collects Prompts | Yes |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-Based on independent network traffic analysis:
-
-- Extensive telemetry data sent to ByteDance servers (approximately 500 network calls observed in a 7-minute session)
-- Hardware fingerprinting data (detailed system information beyond typical telemetry)
-- Machine identifiers and hardware serial numbers
-- OS version, CPU model, GPU model, RAM, disk information
-- Screen resolution and display configuration
-- IDE usage events and interaction patterns
-- Extension and plugin information
-- File type and language statistics
-- Session timing and duration data
-- Network configuration data
-- Crash reports and error telemetry
+- Chat interactions and related code snippets (used for analytics, product improvement and model training unless Privacy Mode is on, per Trae)
+- Codebase files uploaded temporarily to compute embeddings (plaintext deleted afterwards, per Trae)
+- Telemetry for functionality and performance monitoring (continues in Privacy Mode, per Trae)
+- Independent analysis: system information, machine and user IDs, usage patterns, performance metrics, project information; ~500 calls / ~26 MB in ~7 minutes
 
 ## What Is NOT Collected
 
-- No specific exclusions have been independently verified due to closed-source nature and encrypted traffic
+- In Privacy Mode, Trae says chat data is not used for analytics, product improvement or training
 
 ## How to Fully Opt Out
 
-**WARNING: Independent testing has shown that telemetry persists even after opting out through the settings UI.**
-
-1. **Settings toggle (ineffective):**
-   - Open Trae Settings
-   - Look for telemetry/analytics settings
-   - Toggle OFF
-   - Note: Network analysis shows telemetry traffic continues after this toggle is disabled
-
-2. **Network-level blocking (recommended):**
-   - Block all ByteDance/Trae telemetry domains at the firewall or DNS level
-   - Known domains include ByteDance analytics endpoints (monitor outbound traffic for specific domains)
-   - Use a network monitoring tool to identify and block all outbound connections
-
-3. **Do not use the tool** if telemetry is a concern, as the opt-out mechanism has been shown to be unreliable.
+1. **Privacy Mode:** turn on in settings (limits chat-data use; some telemetry continues)
+2. **Telemetry toggle:** only affects VS Code-framework telemetry (per ByteDance's reworded setting)
+3. **Network-level blocking:** needed for anything else
+4. **Do not use the tool** if this is unacceptable
 
 ## Red Flags
 
-- **Telemetry persists after opt-out:** Independent network analysis demonstrates that disabling telemetry in settings does NOT stop data transmission. This is a critical trust violation.
-- **Hardware fingerprinting:** Collects detailed hardware identifiers beyond what is typical for IDE telemetry (serial numbers, detailed hardware specs)
-- **~500 network calls in 7 minutes:** The volume of telemetry traffic is extraordinarily high compared to other tools in this category
-- **5-year data retention:** Privacy policy indicates data may be retained for up to 5 years
-- **ByteDance ownership:** Data is processed by ByteDance (parent company of TikTok), subject to Chinese data regulations and potential government access requirements under Chinese law
-- **Closed source:** No ability to independently verify data collection through source code review
-- **VS Code fork:** Inherits VS Code's codebase but adds extensive proprietary telemetry on top
-- **No transparency report:** No public documentation of what telemetry data is collected or how it is used
+- Telemetry continued after the settings opt-out in independent testing; ByteDance then reworded the toggle to say it only covers VS Code-framework telemetry
+- Chat data and code snippets may be used for model training unless Privacy Mode is enabled
+- Some telemetry continues even in Privacy Mode, per Trae's own blog
+- Very high call volume (~500 calls in ~7 minutes) reported
+- ByteDance ownership; data stored in the US, Singapore and Malaysia
+- Closed source
+
+## Notes
+
+collectsCode/collectsPrompts changed from Unknown to Yes based on Trae's own data-practices blog. The 5-year retention claim from the 2026-03-23 entry could not be re-verified (privacy policy page renders only via JavaScript).
 
 ## Evidence
 
-- Independent network traffic analysis showing ~500 calls in 7 minutes
-- Network analysis confirming telemetry persists after opt-out toggle
-- Hardware fingerprinting data observed in network payloads
-- Privacy Policy: https://trae.ai/privacy (references 5-year retention)
-- ByteDance Terms of Service apply
-- Community reports and independent security analyses
+- Trae data practices blog: https://www.trae.ai/blog/product_thought_0819
+- The Register (2025-07-28): https://www.theregister.com/2025/07/28/bytedance_trae_telemetry/
+- Unit 221B analysis: https://blog.unit221b.com/dont-read-this-blog/unveiling-trae-bytedances-ai-ide-and-its-extensive-data-collection-system
+- Privacy policy: https://www.trae.ai/privacy-policy
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Added Privacy Mode and the toggle-scope clarification; collectsCode/Prompts set to Yes from Trae's own blog; 5-year retention not re-verified.

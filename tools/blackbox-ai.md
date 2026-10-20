@@ -7,44 +7,45 @@
 | Category | AI Code Completion / Chat |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Custom (Blackbox cloud) |
+| Analytics Providers | Custom (Blackbox cloud), cookies |
 | Disable Method | No documented opt-out |
 | Collects Code | Yes |
 | Collects Prompts | Yes |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Code context sent to Blackbox servers for completion
-- Chat prompts and queries
-- Usage analytics
-- Editor metadata (file type, language, cursor position)
-- Account and session data
+- Code context and prompts sent to Blackbox servers for completions, chat and agent features
+- Account details (email, name, password or connected Gmail account)
+- Cookies and similar tracking; activity on the Service
+- Geolocation data
+- Editor and session metadata
 
 ## What Is NOT Collected
 
-- Not documented. No public list of excluded data types.
+- Per Blackbox's privacy overview page: no product-analytics copy of completion content, prompts/completions not used for training, request content kept in memory only (not independently verifiable)
 
 ## How to Fully Opt Out
 
-There is no documented way to fully opt out of data collection while using the service. The only way to prevent data collection is to uninstall the extension.
+1. No documented telemetry opt-out.
+2. Cookie and consent preferences can be changed in account settings; marketing emails can be unsubscribed.
+3. **Only complete option:** uninstall the extension/CLI.
 
 ## Red Flags
 
-- **All code is cloud-processed** -- code context is sent to Blackbox servers for every completion
-- Closed source with no independent audit available
-- No documented opt-out mechanism for telemetry
-- Privacy policy is vague on data retention and sharing
-- VS Code extension requests broad permissions
-- No clarity on whether user code is used for model training
-- Free tier with unclear monetization model raises data-use questions
+- Every completion is cloud-processed.
+- Closed source; no independent audit.
+- No telemetry opt-out.
+- The formal privacy policy (January 2024) does not cover IDE/CLI data handling; stronger claims live only on a marketing overview page.
+- Requests may be routed to closed upstream providers.
 
 ## Evidence
 
-- Privacy policy: https://www.blackbox.ai/privacy
-- Extension sends code to `api.blackbox.ai` for processing (observable via network inspection)
-- No telemetry toggle in extension settings
+- Privacy policy (last updated 2024-01-07): https://www.blackbox.ai/privacy-policy
+- Privacy overview: https://www.blackbox.ai/privacy
+- VS Code Marketplace: Blackboxapp.blackbox, Blackboxapp.blackboxagent
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified against current privacy pages: added no-training/in-memory claims from overview page, noted formal policy date (2024-01-07); updated privacy URL.

@@ -1,3 +1,5 @@
+> **Note (2026-10-20):** This file is a Claude Skills telemetry audit from 2026-03-23 and belongs with the skill snitch list rather than this agent list; it is kept here unchanged for history and is not part of `data/tools.json` or the README counts.
+
 # Claude Skills Telemetry Audit Report
 ## Date: 2026-03-23
 ## Sources Audited

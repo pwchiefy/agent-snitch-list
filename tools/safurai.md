@@ -2,47 +2,45 @@
 
 | Field | Value |
 |-------|-------|
-| Website | https://www.safurai.com/ |
+| Website | https://www.safurai.com/ (expired certificate 2026-10-20) |
 | Repository | Closed source |
 | Category | AI Code Assistant |
 | Telemetry | Unknown |
 | Default State | Unknown |
 | Analytics Providers | Unknown |
-| Disable Method | Self-hosted option available for enterprise |
-| Collects Code | Unknown (cloud mode likely yes) |
+| Disable Method | Self-hosted option (enterprise) |
+| Collects Code | Unknown |
 | Collects Prompts | Unknown |
 | Last Verified | 2026-03-23 |
 
 ## What Is Collected
 
 - Unknown. Safurai does not publish detailed telemetry documentation.
-- Cloud mode presumably sends code context to Safurai servers for completions
-- Usage analytics likely collected based on standard SaaS practices
+- Cloud mode presumably sends code context to Safurai servers for completions.
 
 ## What Is NOT Collected
 
-- Self-hosted option (enterprise) keeps code on-premises
 - No detailed documentation available
 
 ## How to Fully Opt Out
 
-1. **Self-hosted deployment:** Enterprise option available to keep all data on-premises
-2. **Cloud mode:** No documented opt-out mechanism
+1. **Self-hosted deployment:** enterprise option (availability today unknown).
+2. **Cloud mode:** no documented opt-out. Given the product appears abandoned, uninstalling is the safest option.
 
 ## Red Flags
 
 - **Lack of transparency** -- no published telemetry documentation
 - Closed source with unknown data collection practices
-- Cloud mode data handling is not documented
 - No published security certifications or audits
-- Privacy policy lacks specifics on code data handling
+- Appears abandoned (extension not updated since May 2023; website certificate expired)
 
 ## Evidence
 
-- Website: https://www.safurai.com/
-- Self-hosted option mentioned in enterprise documentation
+- VS Code Marketplace: Safurai.Safurai v0.1.0, last updated 2023-05-29
+- https://safurai.com -- TLS certificate expired (checked 2026-10-20)
 - No public telemetry documentation found
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Status check only: extension unmaintained since 2023-05 and website certificate expired; telemetry still unknown (lastVerified unchanged).

@@ -6,45 +6,47 @@
 | Repository | Closed source |
 | Category | AI PR Description / Code Review |
 | Telemetry | Yes |
-| Default State | SaaS (always on) |
-| Analytics Providers | Custom (What The Diff servers) |
-| Disable Method | No documented opt-out while using service |
-| Collects Code | Yes (PR diffs processed server-side) |
-| Collects Prompts | N/A |
-| Last Verified | 2026-03-23 |
+| Default State | SaaS-inherent |
+| Analytics Providers | Custom (What The Diff servers), Fathom Analytics (website) |
+| Disable Method | No documented opt-out while using the service |
+| Collects Code | Yes |
+| Collects Prompts | Unknown |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Pull request diffs (sent to What The Diff servers for processing)
-- Generated PR descriptions
-- Repository metadata
-- Usage analytics
-- Account and organization data
-- GitHub/GitLab integration data
+- PR diffs and generated descriptions
+- Repository metadata via the GitHub/GitLab integration
+- Account data (name, email, GitHub profile)
+- Usage data: IP, browser, device identifiers, cookies
+- Website analytics via Fathom
 
 ## What Is NOT Collected
 
-- Full repository contents (only PR diffs are processed)
-- Specific retention and exclusion policies not detailed
+- Only PR diffs are processed, not full repositories
+- Payment details handled by Paddle
 
 ## How to Fully Opt Out
 
-1. **Only option:** Remove the GitHub/GitLab integration
-2. **Selective use:** Configure which repositories have the integration enabled
+No opt-out while using the service.
+1. **Account:** delete via settings or email
+2. **Repository access:** uninstall the GitHub App
 
 ## Red Flags
 
-- PR diffs contain actual code changes and are sent to third-party servers
-- Closed source with limited transparency
-- SaaS-only model -- no self-hosted option
-- Code diffs may contain sensitive changes (credentials, internal logic)
+- PR diffs containing code changes are sent to a third-party service
+- Privacy policy (2022) does not cover code diffs, AI subprocessors or training
+- Closed source; SaaS only
+
+## Notes
+
+Service still online (2026-10-20). Only PR diffs are processed, not full repositories.
 
 ## Evidence
 
-- Website: https://whatthediff.ai/
-- Privacy policy on website
-- GitHub App integration requires repository access
+- Privacy policy (last updated 2022-10-20): https://whatthediff.ai/privacy-policy
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified service is live; added privacy policy URL and Fathom Analytics; noted the policy does not cover code diffs or AI providers.

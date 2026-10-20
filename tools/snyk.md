@@ -3,53 +3,51 @@
 | Field | Value |
 |-------|-------|
 | Website | https://snyk.io/ |
-| Repository | https://github.com/snyk/cli |
+| Repository | https://github.com/snyk/cli (CLI; engine closed) |
 | Category | AI-Assisted Security Scanning |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Custom API (Snyk servers) |
-| Disable Method | `SNYK_DISABLE_ANALYTICS=1` environment variable |
-| Collects Code | Yes (for `snyk code test`) |
-| Collects Prompts | N/A |
-| Last Verified | 2026-03-23 |
+| Analytics Providers | Snyk API; Sentry (npm wrapper); Datadog/Snowflake (processors) |
+| Disable Method | `SNYK_DISABLE_ANALYTICS=1` / `snyk config set disable-analytics=1` (optional analytics only) |
+| Collects Code | Yes (`snyk code test`) |
+| Collects Prompts | Unknown |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- CLI usage analytics (commands run, flags used, timing)
-- For `snyk code test`: code snippets sent to Snyk servers for analysis
-- Dependency manifests and lockfiles
-- OS, CLI version, Node.js version
-- Error and crash data
-- Organization and project metadata
-- Vulnerability scan results
+- **Essential operational analytics (always on):** anonymized success/failure rates, execution times and technical metadata; processed in Snowflake and Datadog per Snyk docs
+- **Optional usage analytics:** CLI command, version, error codes, usage patterns
+- **Scanning data:** code snippets for `snyk code test`; dependency manifests for `snyk test`; OS/CLI/Node version; org/project metadata; results
+- **npm wrapper:** install/binary errors reported to Sentry when analytics are enabled
 
 ## What Is NOT Collected
 
-- Snyk states code snippets for `snyk code` are processed ephemerally
-- Claims code is not stored or used for training
-- `SNYK_DISABLE_ANALYTICS=1` stops usage telemetry but NOT code analysis data (which is required for the feature)
+- `snyk test` (open-source dependency scanning) does not upload source code
 
 ## How to Fully Opt Out
 
-1. **Analytics telemetry:** `export SNYK_DISABLE_ANALYTICS=1`
-2. **CLI config:** `snyk config set disable-analytics=1`
-3. **Code scanning:** Cannot opt out of code transmission when using `snyk code test` -- it requires server-side analysis. Use `snyk test` (dependency-only) to avoid sending code.
-4. **Network block:** Block `*.snyk.io` to prevent all communication
+1. **Env var:** `export SNYK_DISABLE_ANALYTICS=1` (also `SNYK_CFG_DISABLE_ANALYTICS`).
+2. **Config:** `snyk config set disable-analytics=1`.
+3. These disable optional analytics only; essential operational analytics remain (per Snyk docs).
+4. Avoid `snyk code test` if code must not leave your machine.
 
 ## Red Flags
 
-- `snyk code test` sends source code to Snyk servers -- this is often not obvious to users
-- Analytics opt-out does NOT prevent code from being sent during code scanning
-- Broad data collection in default mode
-- CLI is open source but the analysis engine is closed source
+- Code scanning uploads source code.
+- Essential analytics cannot be disabled.
+- Analytics opt-out does not stop code upload.
+- Sentry error reporting in the npm wrapper.
+- Closed analysis engine.
 
 ## Evidence
 
-- CLI repository: https://github.com/snyk/cli
-- Analytics disable: documented in CLI help and README
-- Code transmission for `snyk code`: https://docs.snyk.io/snyk-code
+- Opt-out constant: https://github.com/snyk/cli/blob/72c8b5b98bd4f72389b944246ebc941692b93229/cliv2/internal/constants/constants.go#L28
+- Legacy analytics gate: https://github.com/snyk/cli/blob/72c8b5b98bd4f72389b944246ebc941692b93229/src/lib/analytics/index.ts#L58
+- Sentry init in npm wrapper: https://github.com/snyk/cli/blob/72c8b5b98bd4f72389b944246ebc941692b93229/ts-binary-wrapper/src/common.ts#L384
+- CLI analytics docs: https://docs.snyk.io/developer-tools/snyk-cli/snyk-cli-analytics
 - Privacy policy: https://snyk.io/policies/privacy/
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified: added always-on essential operational analytics (docs), Sentry in npm wrapper, Datadog/Snowflake processors; privacy URL now points to CLI analytics docs.

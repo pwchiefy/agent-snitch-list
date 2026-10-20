@@ -162,7 +162,7 @@ For a tool to be classified as 🟢 None, we require: (a) no analytics dependenc
 1. **Initial research** — One contributor performs the full research process
 2. **Peer review** — At least one other contributor reviews the findings and evidence
 3. **Tool-specific page** — Detailed findings are documented in `tools/<slug>.md` with evidence links
-4. **Summary table update** — The main README table is updated
+4. **Summary table update** — The entry in `data/tools.json` is updated and the README counts and table are regenerated with `npm run readme`
 5. **Ongoing monitoring** — Tools are re-evaluated when new versions are released, when community members report changes, or at minimum every 6 months
 
 ---

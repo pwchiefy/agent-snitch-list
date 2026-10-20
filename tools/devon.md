@@ -8,53 +8,44 @@
 | Telemetry | Yes |
 | Default State | ON |
 | Analytics Providers | PostHog |
-| Disable Method | `DEVON_TELEMETRY_DISABLED=true` environment variable |
+| Disable Method | `DEVON_TELEMETRY_DISABLED=true` |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Session start/end events
-- Feature usage events (commands invoked, agent actions)
-- OS and platform information
-- Python version
-- Devon version
-- Anonymous machine/session identifiers
-- Error events (non-sensitive)
-- Agent loop iteration counts
+- A `SessionStartEvent` with the session name
+- Server context (`FastAPI`)
+- A random user ID persisted in `~/.cache/devon/telemetry_user_id`
 
 ## What Is NOT Collected
 
 - Source code or file contents
 - Prompts or LLM responses
-- File names or paths
-- API keys or credentials
-- Repository URLs or names
+- API keys
 
 ## How to Fully Opt Out
 
-1. **Environment variable:** Set before running Devon:
+1. Set exactly:
    ```bash
    export DEVON_TELEMETRY_DISABLED=true
    ```
-2. **Shell profile:** Add to `~/.bashrc`, `~/.zshrc`, or equivalent:
-   ```bash
-   export DEVON_TELEMETRY_DISABLED=true
-   ```
+   The check is a case-sensitive string comparison; `1` or `TRUE` do not disable telemetry.
 
 ## Red Flags
 
-- Telemetry is ON by default with no first-run consent prompt
-- The environment variable name must be exact; misspelling it silently leaves telemetry enabled
+- ON by default; no consent prompt.
+- Strict `== "true"` check means common variants silently leave telemetry on.
+- Project unmaintained since July 2024.
 
 ## Evidence
 
-- PostHog integration: `devon/telemetry.py`
-- Environment variable check for `DEVON_TELEMETRY_DISABLED`
-- PostHog project key embedded in source code
-- Repository: https://github.com/entropy-research/Devon
+- Telemetry client: https://github.com/entropy-research/Devon/blob/8f68f1d7467161562d64138aefee7d26c7e68130/devon_agent/utils/telemetry.py#L106
+- Session start capture: https://github.com/entropy-research/Devon/blob/8f68f1d7467161562d64138aefee7d26c7e68130/devon_agent/session.py#L1161
+- README telemetry section: https://github.com/entropy-research/Devon/blob/8f68f1d7467161562d64138aefee7d26c7e68130/README.md#L249
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified; corrected source path (devon_agent/utils/telemetry.py) and data collected (only session-start event in current source); clarified exact-value opt-out; noted inactivity.

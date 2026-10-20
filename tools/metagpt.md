@@ -2,42 +2,42 @@
 
 | Field | Value |
 |-------|-------|
-| Website | https://www.deepwisdom.ai/ |
-| Repository | https://github.com/geekan/MetaGPT |
+| Website | https://github.com/FoundationAgents/MetaGPT |
+| Repository | https://github.com/FoundationAgents/MetaGPT |
 | Category | Multi-Agent Framework |
 | Telemetry | No |
-| Default State | OFF |
+| Default State | N/A |
 | Analytics Providers | None |
-| Disable Method | N/A |
+| Disable Method | N/A (no telemetry to disable) |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Nothing. MetaGPT does not include telemetry or analytics.
+- Nothing. No telemetry or analytics code in the framework.
 
 ## What Is NOT Collected
 
-- No usage metrics
-- No code or prompts
-- No crash reports
-- No user identifiers
+- No usage analytics
+- No error reporting
+- No machine identifiers
+- Prompts go only to the LLM endpoints you configure
 
 ## How to Fully Opt Out
 
-No action required. There is no telemetry to disable.
+1. No action required.
 
 ## Red Flags
 
-None identified. All LLM calls go directly to user-configured API endpoints. No intermediary servers.
+- None identified for the open-source framework. Low recent activity (last commit January 2026).
 
 ## Evidence
 
-- Repository: https://github.com/geekan/MetaGPT
-- No analytics dependencies in pyproject.toml or requirements
-- No telemetry module in source tree
+- Code search at commit 11cdf46: no analytics/telemetry SDKs (https://github.com/FoundationAgents/MetaGPT/tree/11cdf466d042aece04fc6cfd13b28e1a70341b1f)
+- Repository moved: https://github.com/geekan/MetaGPT redirects to https://github.com/FoundationAgents/MetaGPT
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified, no telemetry. Repo moved to FoundationAgents/MetaGPT; website now redirects to atoms.dev.

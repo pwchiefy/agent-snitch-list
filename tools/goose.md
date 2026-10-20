@@ -2,63 +2,46 @@
 
 | Field | Value |
 |-------|-------|
-| Website | https://block.github.io/goose |
-| Repository | https://github.com/block/goose |
+| Website | https://goose-docs.ai |
+| Repository | https://github.com/aaif-goose/goose |
 | Category | AI Coding Agent (CLI) |
 | Telemetry | Yes |
 | Default State | Opt-in |
 | Analytics Providers | PostHog |
-| Disable Method | `GOOSE_TELEMETRY_OFF=1` environment variable |
+| Disable Method | Decline prompt; `GOOSE_TELEMETRY_ENABLED=false`; `GOOSE_TELEMETRY_OFF=1` |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Operating system and platform info
-- Goose version
-- LLM model name used (not API keys)
-- Session start/end events
-- Feature usage events (toolkits used, commands invoked)
-- Session duration
-- Error events (non-sensitive metadata only)
-- Anonymous machine identifier (hashed)
+- Nothing until you opt in at the first-run prompt.
+- After opt-in: OS, version and architecture; goose version and install method; provider and model; extension and tool usage counts (names only); session duration, interaction count and token usage; error types (e.g. `rate_limit`, no details); an anonymous installation ID.
 
 ## What Is NOT Collected
 
-- Source code or file contents
-- Prompts sent to LLMs
-- LLM responses or outputs
-- File names or paths
-- API keys or credentials
-- Repository URLs or names
-- Personal identifying information
+- Conversations, code, tool arguments or error messages
+- Personal data (per goose docs)
 
 ## How to Fully Opt Out
 
-1. **First-run consent:** When Goose runs for the first time, it asks for consent to collect anonymous usage data. Decline the prompt.
-2. **Environment variable:** Set before running:
-   ```bash
-   export GOOSE_TELEMETRY_OFF=1
-   ```
-3. **Shell profile:** Add to `~/.bashrc` or `~/.zshrc`:
-   ```bash
-   export GOOSE_TELEMETRY_OFF=1
-   ```
+1. **First run:** decline the usage-data prompt.
+2. **Desktop:** Settings > App > Privacy > toggle off *Anonymous usage data*.
+3. **CLI:** `goose configure` > goose settings > Telemetry > No.
+4. **Config/env:** `GOOSE_TELEMETRY_ENABLED: false` in `config.yaml` or as an env var; `GOOSE_TELEMETRY_OFF=1` forces it off.
 
 ## Red Flags
 
-- PostHog is a third-party analytics platform; data is sent to PostHog's cloud infrastructure
-- Developed by Block (formerly Square), a large corporation; privacy practices are governed by Block's corporate policies
+- When opted in, events go to PostHog's US cloud.
 
 ## Evidence
 
-- PostHog integration in the Goose source code
-- First-run consent prompt implementation
-- Environment variable `GOOSE_TELEMETRY_OFF` check
-- Repository: https://github.com/block/goose
-- Telemetry documentation in project README/docs
+- PostHog key and capture URL: https://github.com/aaif-goose/goose/blob/9920efa16d078777a4d9715b2f00d8800a4da188/crates/goose/src/posthog.rs#L16
+- Opt-in default: https://github.com/aaif-goose/goose/blob/9920efa16d078777a4d9715b2f00d8800a4da188/crates/goose/src/posthog.rs#L50
+- Usage-data docs: https://github.com/aaif-goose/goose/blob/9920efa16d078777a4d9715b2f00d8800a4da188/documentation/docs/guides/usage-data.md
+- Docs site: https://goose-docs.ai/docs/guides/usage-data/
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified (opt-in). Repo moved to aaif-goose/goose (Linux Foundation AAIF); added `GOOSE_TELEMETRY_ENABLED` and documented data list; privacy URL added; dropped Block-governance flag.

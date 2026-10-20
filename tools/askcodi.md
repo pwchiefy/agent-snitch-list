@@ -7,46 +7,48 @@
 | Category | AI Code Assistant |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Cookies, third-party ad partners |
-| Disable Method | No documented opt-out for telemetry; cookie settings available |
-| Collects Code | Yes (sent for processing) |
+| Analytics Providers | PostHog, Google Analytics, Google AdSense, Sentry |
+| Disable Method | Cookie categories; desktop Settings > Privacy (crash reporting) |
+| Collects Code | Yes |
 | Collects Prompts | Yes |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Code context sent to AskCodi servers for completions
-- Chat prompts and queries
-- Usage analytics via cookies
-- Browser/editor metadata
-- Account and session data
-- Data shared with advertising partners (per privacy policy)
+- Prompts and generated responses (from every visitor, with or without an account)
+- Code you share explicitly
+- Usage and device data: pages viewed, searches, apps opened, IP address, session data, browser and OS
+- Subscription and payment records
+- Product analytics via PostHog (Statistics cookie category, opt-in on web)
+- Google Analytics (only with consent) and Google AdSense on Free-plan pages (Marketing category, opt-in)
+- Desktop crash reports to Sentry
 
 ## What Is NOT Collected
 
-- Not documented in detail
+- Paid plans/premium models: data not used for training without explicit consent (per policy)
+- Feedback signals are used for product improvement, not training
 
 ## How to Fully Opt Out
 
-1. **Cookies:** Manage cookie preferences via the website settings
-2. **Core telemetry:** No documented opt-out while using the service
-3. **Only full opt-out:** Uninstall the extension and delete your account
+1. Refuse the Statistics and Marketing cookie categories in the cookie banner.
+2. Desktop: Settings > Privacy > turn off crash reporting (EU/UK users see a consent dialog on first launch).
+3. Use a paid plan/premium model to avoid training use; no training opt-out is described for the Free plan.
+4. Data requests: hello@askcodi.com.
 
 ## Red Flags
 
-- **Data shared with advertising partners** -- privacy policy indicates data sharing with ad networks
-- Closed source with no independent audit
-- No opt-out mechanism for core telemetry
-- Cookie-based tracking on web properties
-- Code is processed on AskCodi servers
-- Ad partner data sharing is unusual for a code assistant and raises significant privacy concerns
+- Free-plan prompts/responses may be used for training and shared with model providers.
+- Advertising on free-plan pages.
+- Closed source.
+- Crash reporting appears default-on outside EU/UK.
+- Prompts collected even without an account.
 
 ## Evidence
 
-- Website: https://www.askcodi.com/
-- Privacy policy references data sharing with advertising partners
-- Cookie consent mechanism on website
+- Privacy policy (effective 2026-06-05): https://www.askcodi.com/docs/privacy
+- VS Code Marketplace: AskCodi.askcodi-vscode v5.5.1 (2024-11-25)
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified against June 2026 privacy policy: named PostHog/GA/AdSense/Sentry, Free-plan training terms and cookie controls; added privacy URL.

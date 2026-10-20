@@ -5,47 +5,39 @@
 | Website | https://magic.dev/ |
 | Repository | Closed source |
 | Category | AI Code Agent / LLM |
-| Telemetry | Yes |
-| Default State | ON |
-| Analytics Providers | Custom (Magic servers) |
-| Disable Method | No documented opt-out |
-| Collects Code | Yes |
-| Collects Prompts | Yes |
-| Last Verified | 2026-03-23 |
+| Telemetry | Unknown |
+| Default State | Unknown |
+| Analytics Providers | Unknown |
+| Disable Method | N/A |
+| Collects Code | Unknown |
+| Collects Prompts | Unknown |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Code context processed on Magic servers
-- User prompts and interactions
-- Usage analytics
-- Account and session data
-- Project metadata
+- Unknown. As of 2026-10-20 magic.dev describes frontier code-model research and lists no generally available product.
 
 ## What Is NOT Collected
 
-- Not documented in detail
+- Unknown -- no current privacy policy or terms are published on magic.dev
 
 ## How to Fully Opt Out
 
-There is no documented way to opt out of data collection while using the service.
-
-1. **Only option:** Stop using the service and request account deletion
+No product or documented controls to evaluate.
 
 ## Red Flags
 
-- **12-month post-account-closure data retention** -- Magic's terms indicate data may be retained for up to 12 months after account deletion
+- No public privacy policy or terms currently linked from magic.dev
 - Closed source with no independent audit
-- No opt-out mechanism
-- No published security certifications
-- Extended data retention period is unusually long for a code assistant
-- Code processed on Magic servers with no self-hosted option
+
+**Notes:** Reclassified to unknown on 2026-10-20: the earlier 'ON' classification and the 12-month post-closure retention claim relied on terms that are no longer published (magic.dev/privacy returns 404), and the site lists no generally available product. Re-evaluate if a product ships.
 
 ## Evidence
 
-- Website: https://magic.dev/
-- Terms of service reference 12-month post-closure retention
-- Privacy policy: https://magic.dev/privacy
+- Homepage (no product or legal links): https://magic.dev/
+- Previously cited https://magic.dev/privacy returns HTTP 404 (2026-10-20)
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Reclassified ON -> Unknown: the terms relied on earlier (incl. 12-month post-closure retention) are no longer published and no public product is listed. Re-evaluate if a product ships.

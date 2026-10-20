@@ -1,70 +1,58 @@
-# Windsurf (Codeium)
+# Windsurf (Cognition)
 
 | Field | Value |
 |-------|-------|
-| Website | https://codeium.com/windsurf |
+| Website | https://windsurf.com |
 | Repository | Closed source |
 | Category | AI Code Editor / Completion (IDE + SaaS) |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Codeium internal telemetry infrastructure |
+| Analytics Providers | Cognition/Windsurf internal telemetry infrastructure |
 | Disable Method | Enterprise tier: admin controls; Individual tier: limited opt-out |
-| Collects Code | Yes (individual tier: code snippets used for service; Enterprise: configurable) |
+| Collects Code | Yes |
 | Collects Prompts | Yes |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
 **Individual tier:**
-- Code context sent to Codeium servers for completions
-- Code snippets for autocomplete and chat features
+- Code context and snippets for autocomplete, chat and agent features
 - Prompts and chat messages
-- Suggestion acceptance/rejection events
-- IDE type, version, and extension version
-- Programming language of active file
-- Latency and performance metrics
-- Feature usage events
-- Error telemetry
-- Anonymous user identifier (linked to Codeium account)
+- Suggestion acceptance/rejection events, latency, feature usage, errors
+- IDE/extension version, language of active file, account-linked identifier
 
-**Enterprise tier:**
-- Code processing with no-retention guarantees
-- Configurable telemetry controls via admin dashboard
-- On-premise deployment option available (air-gapped)
+**Cognition privacy policy (2026-03-09):** may use User Content "to train, fine tune and improve the models that power our Services," depending on the terms that apply to your use.
+
+**Enterprise tier:** configurable, with no-retention guarantees and self-hosted options.
 
 ## What Is NOT Collected
 
-- Enterprise (with on-premise): no data leaves customer infrastructure
+- Enterprise (self-hosted): data stays in customer infrastructure
 - Git credentials or SSH keys
-- Codeium states it does not train on individual user code (for non-enterprise, verify current terms)
 
 ## How to Fully Opt Out
 
-1. **Enterprise self-hosted deployment:** Deploy Codeium on-premise for full data control:
-   - Air-gapped deployment eliminates all external telemetry
-   - Enterprise admin console provides granular controls
-2. **Individual tier (limited):**
-   - Disable VS Code telemetry: `"telemetry.telemetryLevel": "off"`
-   - Codeium extension settings may offer limited telemetry toggles
-   - Code must still be sent to Codeium servers for the service to function
-3. **Network-level:** Block Codeium telemetry endpoints (will break functionality):
-   - `*.codeium.com`
+1. **Enterprise:** admin console controls / self-hosted deployment
+2. **Individual:** check profile settings for zero-data-retention (reported by third-party trackers as opt-in for individuals; not confirmed from a primary page)
+3. **VS Code-level telemetry:** `"telemetry.telemetryLevel": "off"`
+4. **Network-level:** blocking Windsurf endpoints breaks functionality
 
 ## Red Flags
 
-- Individual tier users' code snippets are processed on Codeium's servers with limited transparency about retention
-- Closed source: no way to independently verify data handling through code review
-- Windsurf is a relatively new editor; data practices may evolve
-- The acquisition landscape (Codeium was acquired) may affect future data policies
-- No clear documentation on exactly what telemetry data points are collected vs. what code context is sent for functionality
+- Cognition privacy policy allows using User Content to train and improve models 'depending on the terms that apply to your use'
+- Individual tier code snippets processed with limited retention transparency
+- Closed source
+- Ownership change (Codeium/Exafunction -> Cognition) moved policies to Cognition documents that do not separately describe editor telemetry
+
+**Notes:** Windsurf (formerly Codeium) was acquired by Cognition (announced 2025-07-14); codeium.com redirects to windsurf.com and Windsurf legal/security pages now redirect to Cognition/Devin documents. Third-party policy trackers report that individual users must opt in to zero-data retention while team/enterprise plans have it by default; not confirmed from a primary Windsurf page on 2026-10-20.
 
 ## Evidence
 
-- Codeium Privacy Policy: https://codeium.com/privacy-policy
-- Codeium Terms of Service: https://codeium.com/terms-of-service
-- Enterprise security documentation: https://codeium.com/security
-- Closed source platform; no source code available for review
+- Acquisition announcement: https://cognition.com/blog/windsurf (2025-07-14)
+- Privacy policy (windsurf.com/privacy-policy redirects here): https://cognition.com/legal/privacy-policy
+- Security (windsurf.com/security redirects here): https://docs.devin.ai/admin/security
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Windsurf now owned by Cognition (acquired July 2025); Windsurf legal/security pages redirect to Cognition/Devin docs; updated privacy URL, name and red flags (policy permits training on User Content depending on terms).

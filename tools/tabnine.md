@@ -3,73 +3,59 @@
 | Field | Value |
 |-------|-------|
 | Website | https://www.tabnine.com |
-| Repository | https://github.com/codota/tabnine-vscode (VS Code extension) |
+| Repository | https://github.com/codota/tabnine-vscode (VS Code extension, archived Oct 2026) |
 | Category | AI Code Completion (IDE Extension + SaaS) |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Application Insights (Microsoft Azure) |
-| Disable Method | Extension settings; Enterprise admin controls |
-| Collects Code | No (zero-retention policy: "no-train, no-retain") |
-| Collects Prompts | No (zero-retention policy) |
-| Last Verified | 2026-03-23 |
+| Analytics Providers | Tabnine telemetry; Application Insights (VS Code extension) |
+| Disable Method | IDE telemetry setting for the extension reporter; no documented Tabnine client opt-out |
+| Collects Code | No (not retained) |
+| Collects Prompts | No (not retained) |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Usage telemetry via Application Insights:
-  - Completion suggestion events (shown, accepted, rejected)
-  - IDE type and version
-  - Extension version
-  - Programming language of active file
-  - Latency and performance metrics
-  - Feature usage events
-  - Error reports and exception telemetry
-  - Anonymous user/machine identifier
-  - Session duration and interaction patterns
+**Tabnine client (per Tabnine docs):**
+- Plugin and binary configuration
+- Machine details (CPU, processors, memory)
+- One-way hashed user email, hostname, IP
+- IDE type and version
+- Aggregated completion counts per language
 
-**Important "no-train, no-retain" policy:**
-- Tabnine processes code for completions but does not retain code snippets after generating suggestions
-- Code is not used for training Tabnine's models
-- This applies to all tiers (Individual, Enterprise)
+**VS Code extension:** events via `vscode-extension-telemetry` (Application Insights).
+
+**Tabnine cluster:** operational metrics and logs (GPU/CPU, memory, throughput, latency), retained one week.
+
+**Self-hosted:** client telemetry goes to your Tabnine server, which forwards it to Tabnine; air-gapped installs can route to your own Prometheus/log aggregator.
 
 ## What Is NOT Collected
 
-- Code snippets are not retained after completion generation
-- Prompts are not stored or used for training
-- No code is used to train Tabnine models (all training uses permissively licensed open-source code)
-- Personal identifying information beyond anonymous telemetry IDs
+- Code: Tabnine states it never retains or shares your code and deletes request context after the response
+- No training on customer code (models trained on permissively licensed open-source code)
 
 ## How to Fully Opt Out
 
-1. **VS Code extension settings:**
-   - Open VS Code Settings
-   - Search for "Tabnine"
-   - Look for telemetry-related toggles and disable them
-2. **VS Code global telemetry:**
-   ```json
-   {
-     "telemetry.telemetryLevel": "off"
-   }
-   ```
-3. **Enterprise (on-premise):**
-   - Deploy Tabnine on-premise for complete data isolation
-   - No telemetry leaves the network in air-gapped deployments
-4. **Enterprise admin controls:** Organizational admins can configure telemetry settings centrally.
+1. **VS Code:** `"telemetry.telemetryLevel": "off"` (governs the extension's Application Insights reporter)
+2. **Enterprise / air-gapped:** route metrics and logs to your own infrastructure
+3. **No documented user-level toggle** for Tabnine client telemetry
 
 ## Red Flags
 
-- Application Insights (Microsoft Azure) is the telemetry provider, meaning operational metrics flow through Microsoft's infrastructure
-- Telemetry is ON by default
-- While Tabnine has a strong "no-train, no-retain" policy for code, the operational telemetry (usage patterns, feature metrics) is still collected
-- The VS Code extension source is available, but the server-side completion engine is closed source
+- Client telemetry ON by default; no documented user-level opt-out beyond the IDE telemetry setting
+- Telemetry includes hashed email, hostname and IP
+- Self-hosted deployments forward client telemetry from the customer server to Tabnine
+- Server-side completion engine is closed source; the VS Code client repo is now archived
+
+**Notes:** Tabnine was acquired by Tricentis (announced 2026-07-30); tabnine.com/privacy now redirects to a Tricentis-hosted policy. The codota/tabnine-vscode repository was archived in October 2026. Strong 'no-train, no-retain' claims in Tabnine docs.
 
 ## Evidence
 
-- Application Insights integration: visible in `tabnine-vscode` extension source
-- Tabnine Privacy Policy: https://www.tabnine.com/privacy
-- "No-train, no-retain" documentation: https://www.tabnine.com/code-privacy
-- VS Code extension: https://github.com/codota/tabnine-vscode
-- Enterprise security: https://www.tabnine.com/enterprise
+- Tabnine privacy docs: https://docs.tabnine.com/main/welcome/readme/privacy
+- Extension reporter: https://github.com/codota/tabnine-vscode/blob/d6b83fea2dc5e915579a5e9b452719c59fde08e1/src/reports/TelemetryReporter.ts
+- Acquisition: https://www.tricentis.com/news/tricentis-acquires-tabnine
+- Privacy policy: https://www.tabnine.com/privacy-policy/
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Tabnine acquired by Tricentis (2026-07-30); VS Code extension repo archived; documented client telemetry fields from Tabnine docs (hashed email, hostname, IP) and self-hosted forwarding; privacy URL updated.

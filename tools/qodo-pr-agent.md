@@ -1,52 +1,47 @@
-# Qodo PR-Agent
+# PR-Agent (formerly Qodo PR-Agent)
 
 | Field | Value |
 |-------|-------|
 | Website | https://www.qodo.ai |
-| Repository | https://github.com/Codium-ai/pr-agent |
+| Repository | https://github.com/The-PR-Agent/pr-agent |
 | Category | AI Code Review / PR Agent |
-| Telemetry | No (external) |
-| Default State | N/A |
-| Analytics Providers | None (local logging only) |
-| Disable Method | N/A (no external telemetry to disable) |
-| Collects Code | No (not sent to Qodo; sent to configured LLM provider) |
-| Collects Prompts | No (not sent to Qodo; sent to configured LLM provider) |
-| Last Verified | 2026-03-23 |
+| Telemetry | No |
+| Default State | OFF |
+| Analytics Providers | None (optional operator-configured OTel / LiteLLM callbacks) |
+| Disable Method | N/A |
+| Collects Code | No |
+| Collects Prompts | No |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Nothing is sent to Qodo/Codium servers in the open-source self-hosted version
-- Local logging only (standard Python logging to stdout/files)
-- Code and prompts are sent directly to the user's configured LLM provider (OpenAI, Anthropic, etc.)
-
-Note: The Qodo hosted service (SaaS) has its own data collection practices that differ from the OSS version.
+- Nothing sent to the project by default.
+- Optional OpenTelemetry (`[otel] is_enabled = false` by default) exports to console, an OTLP endpoint or Prometheus only when the operator configures it.
+- Optional LiteLLM success/failure callbacks (e.g. Langfuse, Datadog, PostHog) only when set in deployment settings; they can attach full prompt/response content unless message logging is disabled.
+- PR content is sent to the LLM provider you configure.
 
 ## What Is NOT Collected
 
-- No usage analytics sent to external services
-- No error reporting to third parties
-- No code or PR content transmitted to Qodo
-- No machine identifiers or tracking
-- No phone-home or update checks to Qodo infrastructure
+- No built-in analytics or phone-home
 
 ## How to Fully Opt Out
 
-No action required for the open-source version. All data stays local and flows only to your configured LLM API provider.
-
-For the Qodo hosted SaaS service, consult Qodo's privacy policy.
+No action required. Leave `[otel] is_enabled = false` and do not configure LiteLLM callbacks if you want no third-party observability.
 
 ## Red Flags
 
-- The Qodo hosted/SaaS version (as opposed to the self-hosted OSS version) likely has different data collection practices. Ensure you are evaluating the correct deployment model.
-- PR content is sent to whichever LLM provider you configure; data handling is governed by that provider's terms.
+- PR content sent to whichever LLM provider you configure
+- If operators enable LiteLLM callbacks, full prompts/responses may be sent to that observability vendor unless message logging is disabled
+- Qodo's hosted product is a separate offering with its own data practices
+
+**Notes:** The repo moved from Codium-ai/pr-agent to The-PR-Agent/pr-agent and is described as a community-maintained legacy project of Qodo; its README states it is not Qodo's offering for open-source projects. Evaluate the correct deployment model (OSS vs Qodo SaaS).
 
 ## Evidence
 
-- No PostHog, Sentry, Amplitude, or similar dependencies in `requirements.txt`
-- No analytics or telemetry modules in the codebase
-- Logging is standard Python logging (local output only)
-- Repository: https://github.com/Codium-ai/pr-agent
+- Config defaults: https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/settings/configuration.toml
+- pr_agent/telemetry/config.py and pr_agent/algo/ai_handlers/litellm_ai_handler.py at the same commit
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Repo moved to The-PR-Agent/pr-agent (community-maintained legacy Qodo project, distinct from Qodo's product); re-verified no default telemetry; documented opt-in OTel and LiteLLM callbacks.

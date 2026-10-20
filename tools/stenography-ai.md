@@ -11,7 +11,7 @@
 | Disable Method | Unknown |
 | Collects Code | Yes (code sent for documentation generation) |
 | Collects Prompts | Unknown |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
@@ -38,12 +38,19 @@ No documented opt-out mechanism. The service requires code to be sent to servers
 - Unknown data retention policies
 - Unknown whether code is used for model training
 
+## Notes
+
+Appears abandoned: the VS Code extension has not been updated since January 2022 and the website shows no product content. Treat as inactive.
+
 ## Evidence
 
 - Website: https://stenography.dev/
 - No public telemetry documentation found
 - Server-side processing required for core functionality
+- stenography.dev serves only a placeholder page (checked 2026-10-20)
+- VS Code extension `stenography.stenography` last updated 2022-01-25 (v1.2.2)
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-checked; product appears abandoned (extension last updated January 2022, placeholder website); telemetry still undocumented, no classification change

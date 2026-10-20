@@ -6,39 +6,37 @@
 | Repository | https://github.com/TheR1D/shell_gpt |
 | Category | CLI AI Assistant |
 | Telemetry | No |
-| Default State | OFF |
+| Default State | N/A |
 | Analytics Providers | None |
-| Disable Method | N/A |
+| Disable Method | N/A (no telemetry to disable) |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Nothing. ShellGPT does not include telemetry or analytics.
+- Nothing.
 
 ## What Is NOT Collected
 
 - No usage analytics
-- No shell commands
-- No prompts or completions
-- No crash reports
-- No user identifiers
+- No error reporting
+- No machine identifiers
+- Prompts go only to the LLM endpoint you configure
 
 ## How to Fully Opt Out
 
-No action required. There is no telemetry to disable.
+1. No action required.
 
 ## Red Flags
 
-None identified. All API calls go directly to user-configured LLM endpoints (OpenAI, Azure, local models).
+- None identified.
 
 ## Evidence
 
-- Repository: https://github.com/TheR1D/shell_gpt
-- No analytics dependencies in requirements
-- No telemetry code in source
+- Source grep at a082bd5: no analytics/telemetry code (https://github.com/TheR1D/shell_gpt/tree/a082bd5327ce0c4ef5a0284d9060e833be9444a6)
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified, no change.

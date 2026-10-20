@@ -3,52 +3,53 @@
 | Field | Value |
 |-------|-------|
 | Website | https://bito.ai/ |
-| Repository | Partial (IDE extensions) |
-| Category | AI Code Assistant |
+| Repository | Closed source |
+| Category | AI Code Review Assistant (IDE extension + Git integration) |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Google Analytics, Mixpanel |
-| Disable Method | No documented opt-out |
-| Collects Code | No (metadata only per claims) |
-| Collects Prompts | Yes (sent to backend for processing) |
-| Last Verified | 2026-03-23 |
+| Analytics Providers | Google Analytics, Mixpanel (2026-03 finding; not named in current privacy policy) |
+| Disable Method | No documented telemetry opt-out (cookie/ad-industry opt-outs only) |
+| Collects Code | Yes (code/diffs for AI review) |
+| Collects Prompts | Yes |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Usage analytics (via Google Analytics and Mixpanel)
-- Prompts sent to Bito backend for AI processing
-- Feature usage patterns
-- Editor metadata (language, file type)
-- Account and session data
-- Error and crash data
-- Bito states only metadata is collected for analytics, not code content
+- Pseudonymized product event analytics
+- Google Analytics, cookies and clear gifs/pixels
+- Account and relationship metadata (retained indefinitely)
+- Code and diffs sent to Bito's backend for AI code review
+- Prompts
 
 ## What Is NOT Collected
 
-- Bito claims code content is not stored for analytics purposes
-- Claims no code used for model training
+- Bito states AI requests are not retained or viewed and code is not used for model training
 
 ## How to Fully Opt Out
 
-There is no documented way to opt out of telemetry while using the extension.
-
-1. **Only option:** Uninstall the extension
+No documented telemetry opt-out.
+1. **Cookies/ads:** browser cookie settings and ad-industry opt-out pages
+2. **Do Not Track:** not honored
+3. **Only full option:** stop using the extension
 
 ## Red Flags
 
-- **Two third-party analytics providers** (Google Analytics + Mixpanel) -- data flows to Google and Mixpanel
-- No documented opt-out mechanism
-- Prompts processed on Bito backend
-- "Metadata only" claim is difficult to verify (closed source)
-- Mixpanel tracks detailed user behavior patterns
+- No documented opt-out for product telemetry
+- Does not honor Do Not Track
+- Usage metadata retained indefinitely
+- Code is sent to Bito's backend for AI code review
+- Closed source; 'not retained' claims cannot be verified
+
+## Notes
+
+Bito's IDE extension now centers on AI code review. Mixpanel was not re-confirmed on 2026-10-20 (not named in the current privacy policy; not found in public docs). collectsCode corrected to Yes because code review sends diffs/code to Bito.
 
 ## Evidence
 
-- Website: https://bito.ai/
-- Privacy policy: https://bito.ai/privacy
-- Google Analytics and Mixpanel identified in extension/web properties
-- No telemetry toggle in extension settings
+- Privacy policy (updated 2025-05-21): https://bito.ai/privacy-policy/
+- IDE code review docs: https://docs.bito.ai/ai-code-reviews-in-ide/overview
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified against current privacy policy: Google Analytics confirmed; Mixpanel not named and left as unverified; collectsCode corrected to Yes (code review).

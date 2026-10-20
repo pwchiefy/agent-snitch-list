@@ -3,70 +3,58 @@
 | Field | Value |
 |-------|-------|
 | Website | https://aws.amazon.com/q/developer/ |
-| Repository | Closed source |
+| Repository | https://github.com/aws/aws-toolkit-vscode (VS Code plugin); https://github.com/aws/aws-toolkit-jetbrains (JetBrains); service closed source |
 | Category | AI Code Completion / Chat (IDE Extension + SaaS) |
 | Telemetry | Yes |
-| Default State | ON |
-| Analytics Providers | AWS internal telemetry infrastructure |
-| Disable Method | IDE settings toggle |
-| Collects Code | Yes (free/individual tier: code used for service improvement; Pro tier with admin controls) |
-| Collects Prompts | Yes (free/individual tier) |
-| Last Verified | 2026-03-23 |
+| Default State | ON (client telemetry; Free-tier content sharing) |
+| Analytics Providers | AWS client-side telemetry |
+| Disable Method | `Amazon Q: Telemetry` / 'Send usage metrics to AWS'; Free tier content: `Amazon Q: Share Content` |
+| Collects Code | Yes (sent for inference; Free-tier content may be used for service improvement) |
+| Collects Prompts | Yes |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-**All tiers:**
-- Code context sent to AWS servers for completion generation
-- Suggestion acceptance/rejection events
-- IDE type and version
-- Plugin/extension version
-- Programming language of active file
-- Latency and performance metrics
-- Feature usage events
-- Error telemetry
+**Client-side telemetry (all tiers, default on):**
+- Usage of the service, e.g. whether a recommendation was accepted or rejected
+- Feature usage, IDE/plugin version, errors
+- AWS states client-side telemetry "does not contain actual code"
+- Event schemas are public: aws-toolkit-common `commonDefinitions.json` and per-IDE definition files
 
-**Free/Individual tier:**
-- Content (code snippets, prompts, suggestions) may be used for service improvement
-- Usage data linked to AWS account
-
-**Pro tier (with organizational admin controls):**
-- Admins can opt out of content sharing for service improvement
-- Code is not retained after generating suggestions when opt-out is enabled
-- AWS Organizations integration for policy enforcement
+**Content (Free tier, default on):**
+- Code and prompts may be used for Amazon Q service improvement unless "Share content" is disabled
+- Pro tier: AWS states Amazon Q does not collect your content
 
 ## What Is NOT Collected
 
-- Pro tier (with opt-out): code content is not retained for training
-- AWS account credentials (IAM keys) are not transmitted through the coding extension
-- Local file system contents beyond the active editor context
+- Code in client-side telemetry (per AWS)
+- Pro tier content (per AWS)
 
 ## How to Fully Opt Out
 
-1. **IDE telemetry toggle:**
-   - **VS Code:** Settings > Extensions > Amazon Q > uncheck "Share Content With AWS"
-   - **JetBrains:** Settings > Tools > Amazon Q > uncheck sharing options
-2. **AWS Organization policy (Pro tier):**
-   - Organization admins can disable content sharing via AWS Organizations service control policies
-   - Navigate to the Amazon Q Developer console and disable "Service improvement" under data settings
-3. **Disable IDE telemetry:**
-   - VS Code: Set `"telemetry.telemetryLevel": "off"` (affects all extensions)
-4. **Network-level:** Blocking AWS telemetry endpoints will likely break functionality as code completion requires server communication.
+1. **VS Code:** Settings > search `Amazon Q: Telemetry` > uncheck; search `Amazon Q: Share Content` > uncheck (Free tier)
+2. **JetBrains:** Settings > Tools > AWS > uncheck **Send usage metrics to AWS**; Tools > AWS > Amazon Q > Data sharing > uncheck **Share Amazon Q content with AWS**
+3. **Visual Studio:** Tools > Options > AWS Toolkit > General > uncheck **Allow AWS Toolkit to collect usage information**; Amazon Q > **Share Amazon Q Content with AWS** = False
+4. **Command line:** Preferences > toggle **Telemetry** and **Share Amazon Q content with AWS**
+5. **Pro tier:** content is not collected; client telemetry still needs the per-IDE toggle (admins cannot change it for developers)
 
 ## Red Flags
 
-- Free tier users' code is used for service improvement by default
-- Closed source: telemetry behavior cannot be independently verified
-- Tight integration with AWS ecosystem means usage data is linked to your AWS identity
-- The distinction between "telemetry" (operational metrics) and "content sharing" (code used for improvement) requires careful attention; disabling one does not disable the other
-- Code context must be sent to AWS servers for the service to function (inherent to architecture)
+- Client telemetry and Free-tier content sharing are ON by default
+- Free-tier code/prompts may be used for service improvement unless opted out
+- Per AWS docs, enterprise administrators cannot change a developer's client telemetry setting
+- Server side is closed source; IDE plugins are open source
+
+**Notes:** IDE plugins are open source (aws-toolkit-vscode, aws-toolkit-jetbrains). The open-source Amazon Q Developer CLI is in maintenance mode (critical security fixes only) and has been succeeded by the closed-source Kiro CLI, which is not covered by this entry. Pro tier: AWS states content is not collected.
 
 ## Evidence
 
-- AWS documentation: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/opt-out-of-data-collection.html
-- Amazon Q Developer FAQ: https://aws.amazon.com/q/developer/faqs/
+- AWS opt-out docs: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/opt-out-IDE.html
+- VS Code telemetry definitions: https://github.com/aws/aws-toolkit-vscode/blob/master/packages/core/src/shared/telemetry/vscodeTelemetry.json
+- Amazon Q Developer CLI maintenance notice (Kiro CLI successor): https://github.com/aws/amazon-q-developer-cli
 - AWS Privacy Notice: https://aws.amazon.com/privacy/
-- Service terms: https://aws.amazon.com/service-terms/ (Amazon Q section)
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified AWS opt-out docs; documented exact per-IDE toggles; marked IDE plugins as open source (repoStatus partial); noted Q Developer CLI is maintenance-only and succeeded by closed-source Kiro CLI.

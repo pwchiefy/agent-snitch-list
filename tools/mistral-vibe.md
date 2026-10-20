@@ -2,71 +2,61 @@
 
 | Field | Value |
 |-------|-------|
-| Website | https://mistral.ai |
-| Repository | Closed source (Vibe IDE); model weights available for Codestral |
-| Category | AI Code Completion / IDE (SaaS + Model) |
+| Website | https://mistral.ai/products/vibe |
+| Repository | https://github.com/mistralai/mistral-vibe |
+| Category | AI Coding Agent (CLI, open source) + models |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Custom endpoint (Mistral AI infrastructure) |
-| Disable Method | `enable_telemetry: false` in configuration |
-| Collects Code | Yes (SaaS: code context processed server-side) |
-| Collects Prompts | Yes (SaaS: prompts processed server-side) |
-| Last Verified | 2026-03-23 |
+| Analytics Providers | Mistral datalake events endpoint (api.mistral.ai), GrowthBook (experiments), Sentry (release builds) |
+| Disable Method | Set `enable_telemetry = false` in Vibe's `config.toml` (also disables experiments and Sentry crash reporting) |
+| Collects Code | Yes (sent to Mistral API in normal use; not in telemetry) |
+| Collects Prompts | Yes (sent to Mistral API in normal use; not in telemetry) |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-**Mistral Vibe (IDE/SaaS):**
-- Usage telemetry (feature events, session data)
-- Code context sent to Mistral servers for completion generation
-- Prompts and chat interactions
-- Error reports
-- Application version and OS information
-- Anonymous user identifiers
-
-**Codestral (model via API):**
-- API usage metrics
-- Prompts and code context sent for inference
-- Standard API logging (request/response metadata)
-
-**Codestral (self-hosted model weights):**
-- Nothing (runs locally)
+- Session events: Vibe version, MCP client/terminal, number of skills, MCP servers and models, whether AGENTS.md exists
+- Request events: model, character and message counts of context and prompt (counts, not content), attachment counts
+- Tool-call, compaction, rating and teleport events; experiment assignments (GrowthBook)
+- Crash reports to Sentry (release builds; DSN injected at release time)
+- Sent to `https://api.mistral.ai/v1/datalake/events` (or the configured Mistral base URL), authenticated with your Mistral API key; only when a Mistral key is configured
+- Core function: prompts and code go to the Mistral API (or another configured provider)
 
 ## What Is NOT Collected
 
-- Self-hosted Codestral: no data leaves your infrastructure
-- API keys are not logged in telemetry events (per Mistral's policy)
-- Local file system contents beyond what is sent as context
+- Telemetry payloads carry counts, not prompt or file contents (based on send.py)
+- Nothing when using self-hosted Codestral/Devstral weights with another tool
+- OpenTelemetry traces are off unless `enable_otel = true`
 
 ## How to Fully Opt Out
 
-1. **Configuration setting:**
-   ```yaml
-   enable_telemetry: false
+1. **config.toml:**
+   ```toml
+   enable_telemetry = false
    ```
-   Or equivalent setting in the IDE/extension configuration.
-
-2. **Self-host Codestral model:** Download and run locally:
-   - Use Codestral model weights from Mistral's model hub
-   - Run via ollama, vLLM, or other local inference frameworks
-   - No data is sent externally when running locally
-
-3. **API usage:** If using Mistral's API, data handling is governed by Mistral's API terms. There is no way to avoid sending code context to the API.
+   This also disables experiments and Sentry crash reporting.
+2. **Local models:** run Codestral/Devstral weights locally to keep code off Mistral servers
 
 ## Red Flags
 
-- Telemetry is ON by default
-- Mistral AI is a French company; data is governed by EU data protection laws (GDPR), which is generally favorable for privacy
-- The Vibe IDE is closed source; telemetry behavior cannot be independently verified
-- When using the Mistral API (not self-hosted), prompts and code context are necessarily processed on Mistral's servers
-- Mistral's data retention and training policies should be reviewed in their terms of service
+- Telemetry is ON by default (no first-run prompt)
+- Remote experiment assignment (GrowthBook) is tied to the telemetry setting
+- When using the Mistral API, prompts and code context are processed on Mistral's servers
+
+## Notes
+
+Corrects the 2026-03-23 entry: Mistral Vibe is an Apache-2.0 open-source CLI coding agent (mistralai/mistral-vibe), not a closed-source IDE. Telemetry is documented and has a single config switch. Codestral/Devstral weights can run locally with no telemetry.
 
 ## Evidence
 
-- Mistral AI Privacy Policy: https://mistral.ai/privacy/
-- Codestral documentation: https://docs.mistral.ai/capabilities/code_generation/
-- Mistral API Terms: https://mistral.ai/terms/
-- Configuration option `enable_telemetry` in tool/extension settings
+- Default `enable_telemetry = True`: https://github.com/mistralai/mistral-vibe/blob/dd2c04ce717c417731ab89c333cd0a72541e33ba/vibe/core/config/vibe_schema.py#L815
+- Telemetry client and endpoint: https://github.com/mistralai/mistral-vibe/blob/dd2c04ce717c417731ab89c333cd0a72541e33ba/vibe/core/telemetry/send.py
+- Sentry (gated by enableTelemetry): https://github.com/mistralai/mistral-vibe/blob/dd2c04ce717c417731ab89c333cd0a72541e33ba/vibe/cli-rust/src/observability/sentry.rs
+- GrowthBook eval path: https://github.com/mistralai/mistral-vibe/blob/dd2c04ce717c417731ab89c333cd0a72541e33ba/vibe/core/experiments/_constants.py
+- README privacy note: https://github.com/mistralai/mistral-vibe/blob/dd2c04ce717c417731ab89c333cd0a72541e33ba/README.md
+- Privacy policy: https://legal.mistral.ai/terms/privacy-policy
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Corrected: Vibe is an open-source CLI (mistralai/mistral-vibe), not a closed IDE; documented datalake endpoint, GrowthBook experiments and Sentry; privacy URL updated (old /privacy/ returns 404).

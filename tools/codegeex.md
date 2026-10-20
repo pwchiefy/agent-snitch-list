@@ -3,70 +3,53 @@
 | Field | Value |
 |-------|-------|
 | Website | https://codegeex.cn |
-| Repository | https://github.com/THUDM/CodeGeeX |
+| Repository | https://github.com/zai-org/CodeGeeX (formerly THUDM/CodeGeeX; model repo) |
 | Category | AI Code Completion / Chat (IDE Extension + SaaS) |
 | Telemetry | Yes |
 | Default State | ON |
 | Analytics Providers | Custom endpoint (Zhipu AI / THUDM infrastructure) |
 | Disable Method | Privacy Mode setting in extension |
-| Collects Code | Yes (unless Privacy Mode is enabled) |
-| Collects Prompts | Yes (unless Privacy Mode is enabled) |
-| Last Verified | 2026-03-23 |
+| Collects Code | Yes |
+| Collects Prompts | Yes |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-**Without Privacy Mode (default):**
-- Code context sent to CodeGeeX/Zhipu AI servers for completion generation
-- Completion content and acceptance/rejection events
-- Chat prompts and responses
-- IDE type and version
-- Extension version
-- Programming language of active file
-- Usage metrics and feature events
-- Error telemetry
-- Anonymous user identifier
+**Without Privacy Mode (default, per original audit):**
+- Code context sent to CodeGeeX/Zhipu servers for completion
+- Completion content and acceptance events, chat prompts/responses
+- IDE/extension version, language, usage metrics, errors, anonymous user ID
 
-**With Privacy Mode:**
-- Basic operational metrics (reduced data collection)
-- Code content reportedly not collected/retained
+**Repository README (extension privacy statement):** code is used only as CodeGeeX input; sharing generated code for research is asked at first use and disabled by default.
 
 ## What Is NOT Collected
 
-- With Privacy Mode: code content not retained (per documentation)
-- Local file system contents beyond editor context
-- Git credentials
+- Generated code for research purposes unless you agree at first use (per README)
+- With Privacy Mode: code content reportedly not retained
 
 ## How to Fully Opt Out
 
-1. **Enable Privacy Mode in the extension:**
-   - Open VS Code Settings
-   - Search for "CodeGeeX"
-   - Enable Privacy Mode / disable data collection
-2. **VS Code global telemetry:**
-   ```json
-   {
-     "telemetry.telemetryLevel": "off"
-   }
-   ```
-3. **Self-hosted model:** Use the open-source CodeGeeX model weights locally to avoid all server communication:
-   - Download model from the GitHub repository
-   - Run inference locally (requires significant GPU resources)
+1. **Decline** research data sharing at first use; enable Privacy Mode in the extension
+2. **VS Code:** `"telemetry.telemetryLevel": "off"`
+3. **Self-host:** run open model weights locally (significant GPU required)
 
 ## Red Flags
 
-- Telemetry data is sent to servers operated by Zhipu AI / Tsinghua University (China-based infrastructure)
-- Completion content (code snippets) is collected by default unless Privacy Mode is explicitly enabled
-- Data is governed by Chinese data protection laws, which may differ significantly from GDPR/CCPA
-- The custom telemetry endpoint is not a well-known Western analytics provider, making independent verification of data handling practices more difficult
-- The open-source repository (CodeGeeX model) is distinct from the CodeGeeX VS Code extension/service
+- Telemetry data sent to China-based infrastructure (Zhipu AI / Tsinghua University)
+- Code snippets collected by default unless Privacy Mode enabled
+- Data governed by Chinese data protection laws
+- Custom telemetry endpoint makes independent verification difficult
+- Open-source model repository is distinct from the VS Code extension/service
+
+**Notes:** The GitHub org THUDM was renamed zai-org (Zhipu / Z.ai). The repo's extension README says code is used only as model input and that sharing generated code for research is asked at first use and disabled by default; the extension itself is closed source, so the remaining telemetry claims are carried over from the original entry. Self-hosted model weights available for local inference.
 
 ## Evidence
 
-- Model repository: https://github.com/THUDM/CodeGeeX
-- VS Code extension: CodeGeeX extension in VS Code marketplace
-- Telemetry endpoints visible in extension network traffic (pointing to Zhipu AI infrastructure)
-- Developed by THUDM (Tsinghua University) and Zhipu AI
+- Model repo: https://github.com/zai-org/CodeGeeX
+- Extension privacy statement: https://github.com/zai-org/CodeGeeX/blob/2838420b7b4492cf3d16bce5320e26e65960c9e2/vscode-extension/README.md
+- Extension telemetry endpoints (carried over from original network observation; not re-verified)
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Repo moved THUDM -> zai-org; added README privacy statement (research sharing opt-in, disabled by default); extension telemetry claims carried over unverified.

@@ -11,7 +11,7 @@
 | Disable Method | VS Code: `"telemetry.telemetryLevel": "off"` / Visual Studio: Help > Privacy Settings |
 | Collects Code | No (user-defined code is not sent) |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
@@ -42,13 +42,18 @@
 - Closed source -- cannot verify no-code-sent claims independently
 - Disabling requires turning off all IDE telemetry (no IntelliCode-specific toggle)
 
+**Status (2026-10-20):** The VS Code IntelliCode extensions were deprecated in November 2025 (no new features, bug fixes or support; Microsoft recommends GitHub Copilot). The MicrosoftDocs/intellicode repo was archived on 2025-11-12.
+
 ## Evidence
 
 - Website: https://visualstudio.microsoft.com/services/intellicode/
 - Microsoft privacy statement: https://privacy.microsoft.com/privacystatement
 - IntelliCode FAQ explicitly states no user code is collected
 - Telemetry settings documented in VS Code and Visual Studio docs
+- Deprecation notice (repo archived 2025-11-12): https://github.com/MicrosoftDocs/intellicode
+- Microsoft Privacy Statement: https://privacy.microsoft.com/privacystatement
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Noted deprecation of the VS Code IntelliCode extensions (Nov 2025) and archived repo; telemetry classification unchanged.
