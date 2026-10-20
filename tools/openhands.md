@@ -2,54 +2,51 @@
 
 | Field | Value |
 |-------|-------|
-| Website | https://www.all-hands.dev |
-| Repository | https://github.com/All-Hands-AI/OpenHands |
+| Website | https://www.openhands.dev |
+| Repository | https://github.com/OpenHands/OpenHands |
 | Category | AI Software Engineering Agent |
 | Telemetry | Yes |
-| Default State | Opt-in |
-| Analytics Providers | PostHog |
-| Disable Method | Settings toggle in the UI |
+| Default State | ON (install ping before consent; other events opt-in) |
+| Analytics Providers | PostHog (via z.openhands.dev proxy) |
+| Disable Method | Decline consent; `AGENT_CANVAS_DISABLE_TELEMETRY=1` / `--disable-telemetry` or Do Not Track to stop everything |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Page load events
-- UI click events and navigation
-- Login and session events
-- Feature usage metrics
-- Browser and OS information
-- Anonymous user/session identifiers
-- Application version
+- **Before any consent:** a single `canvas_install` event with platform, browser user agent, referrer, URL origin, whether embedded, and a random ID.
+- **After you grant consent:** session and custom product events (UI/feature usage, backend and deployment kind, app version, anonymous/identified user IDs when signed in to OpenHands Cloud).
 
 ## What Is NOT Collected
 
-- Source code or repository contents
-- Prompts sent to LLMs
-- LLM responses or outputs
-- API keys or credentials
-- File names or paths from user projects
-- Personal identifying information (beyond anonymous session ID)
+- Code or file contents
+- Prompts or LLM responses
+- Nothing beyond the install event if you decline consent
 
 ## How to Fully Opt Out
 
-1. **First-run consent modal:** When OpenHands launches for the first time, a consent modal asks whether you want to enable analytics. Select "No" or "Decline."
-2. **Settings toggle:** Navigate to Settings in the OpenHands UI and disable the telemetry/analytics toggle.
-3. **Environment variable:** Set `OPENHANDS_DISABLE_TELEMETRY=true` before starting the application.
+1. **Consent dialog:** decline analytics on first launch (or later in settings).
+2. **Hard disable (includes install event):** start the static server with `AGENT_CANVAS_DISABLE_TELEMETRY=1` or `--disable-telemetry`; source builds can set `VITE_DO_NOT_TRACK=1`.
+3. **Browser:** enabling Do Not Track prevents PostHog from initializing.
+4. **Agent server (software-agent-sdk):** telemetry is consent-gated and inactive unless a PostHog key is configured.
 
 ## Red Flags
 
-- PostHog is a third-party analytics platform; data is sent to PostHog's cloud infrastructure unless self-hosted PostHog is configured.
+- The `canvas_install` event is sent before consent (the code comments say 'regardless of consent').
+- Events are routed via OpenHands' reverse proxy `z.openhands.dev` 'to avoid being blocked by ad blockers'.
+- Default destination is OpenHands' PostHog project (US region).
 
 ## Evidence
 
-- PostHog integration: `frontend/src/utils/posthog.ts`
-- Consent modal: `frontend/src/components/ConsentModal.tsx`
-- Settings toggle: `frontend/src/components/Settings.tsx`
-- PostHog project key in frontend source code
-- Repository: https://github.com/All-Hands-AI/OpenHands
+- Tracking philosophy and opt-outs (file header): https://github.com/OpenHands/OpenHands/blob/f69111678b76272c7c601de7764544d91dc912ed/src/services/telemetry.ts#L1
+- Install event payload: https://github.com/OpenHands/OpenHands/blob/f69111678b76272c7c601de7764544d91dc912ed/src/services/telemetry.ts#L775
+- Default host `https://z.openhands.dev`: https://github.com/OpenHands/OpenHands/blob/f69111678b76272c7c601de7764544d91dc912ed/src/services/telemetry.ts#L77
+- PostHog project key in config: https://github.com/OpenHands/OpenHands/blob/f69111678b76272c7c601de7764544d91dc912ed/config/defaults.json#L43
+- Consent dialog: https://github.com/OpenHands/OpenHands/blob/f69111678b76272c7c601de7764544d91dc912ed/src/components/features/analytics/telemetry-consent-banner.tsx
+- Agent server consent-gated exporter: https://github.com/OpenHands/software-agent-sdk/blob/0996c33916c2a977ea9fe38deee660ff0e1389f2/openhands-agent-server/openhands/agent_server/telemetry/service.py
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Repo moved to OpenHands/OpenHands (now Agent Canvas). Source shows a pre-consent PostHog install event via z.openhands.dev; reclassified opt-in -> ON per methodology. Updated evidence paths.

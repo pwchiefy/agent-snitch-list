@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | Website | https://e2b.dev/ |
-| Repository | https://github.com/e2b-dev/e2b |
+| Repository | https://github.com/e2b-dev/E2B |
 | Category | AI Code Execution Sandbox |
 | Telemetry | No (client SDK) |
 | Default State | OFF |
@@ -11,7 +11,7 @@
 | Disable Method | N/A |
 | Collects Code | No (client SDK); code runs in E2B sandboxes (server-side) |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
@@ -35,13 +35,18 @@ No client-side telemetry to disable. To avoid server-side code processing:
 - Ephemeral sandbox claims require trust in E2B's infrastructure
 - Sandbox execution logs may be retained for operational purposes
 
+**Status (2026-10-20):** Repository is now e2b-dev/E2B.
+
 ## Evidence
 
 - Repository: https://github.com/e2b-dev/e2b
 - No analytics dependencies in client SDK
 - Sandbox architecture documentation on website
 - Privacy policy: https://e2b.dev/privacy
+- https://github.com/e2b-dev/E2B/tree/85dd0e5ac545747925d25f5fc24fef3f1ff9e8f2/packages -- no analytics/telemetry dependencies
+- Privacy: https://e2b.dev/privacy
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified, no change (repo casing updated to e2b-dev/E2B).

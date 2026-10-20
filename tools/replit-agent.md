@@ -7,60 +7,50 @@
 | Category | AI Code Editor / Agent (Cloud IDE + SaaS) |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Replit internal infrastructure, third-party analytics |
+| Analytics Providers | Replit internal infrastructure, Google Analytics, third-party analytics |
 | Disable Method | No documented opt-out for core telemetry |
 | Collects Code | Yes |
 | Collects Prompts | Yes |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- All code written in Replit (stored on Replit's servers as part of the service)
-- Prompts sent to Replit Agent and Ghostwriter
-- AI-generated code and responses
-- Session and usage analytics (feature usage, navigation, time spent)
-- Account information (email, authentication data, billing)
-- Browser and device information
-- Repl metadata (language, dependencies, run history)
-- Error reports and application logs
-- Collaboration events (multiplayer editing)
-- Deployment and hosting data
+- All code written in Replit (stored on Replit servers)
+- Prompts to Replit Agent and AI-generated code/responses
+- Session and usage analytics; Google Analytics named in the privacy policy
+- Account, billing, browser/device info, repl metadata, error logs, deployment data
 
-**ML Training:**
-- Replit has stated that code hosted on Replit may be used for ML model training
-- Public repls are used for training data
-- Replit's terms grant them rights to use hosted content for service improvement
+**ML use:** the privacy policy (updated 2026-08-03) lists code and prompts among collected data and a legitimate interest in improving machine-learning technologies such as code generation; no AI-training opt-out is described.
 
 ## What Is NOT Collected
 
 - No specific exclusions documented for the core service
-- Paid tier users may have additional protections (verify current terms)
 
 ## How to Fully Opt Out
 
-There is no comprehensive opt-out mechanism. Replit is a fully hosted cloud IDE, and data collection is fundamental to the service.
+There is no documented AI-training opt-out.
 
-1. **Private repls:** Making repls private may limit their use in public training datasets, but code is still processed on Replit's servers.
-2. **Teams/Enterprise:** Enterprise plans may offer additional data controls and contractual guarantees.
-3. **Do not use the service** if data collection is unacceptable for your use case.
+1. **Do Not Sell/Share:** footer link for advertising-related sharing
+2. **Google Analytics:** Google's opt-out browser add-on
+3. **Requests:** access/deletion via account settings or email
+4. **Enterprise:** negotiate contractual data controls
 
 ## Red Flags
 
-- Code hosted on Replit is used for ML model training (per their terms of service)
-- No way to self-host or air-gap the environment
-- All code executes on Replit's servers, giving them full access to runtime behavior
-- Closed source: data handling cannot be verified through code review
-- The platform has access to environment variables and secrets stored in repls
-- Public repls are explicitly part of training datasets
-- Replit's business model depends on leveraging hosted code for AI model improvement
+- Code hosted on Replit used for ML model training (per ToS)
+- No way to self-host or air-gap
+- All code executes on Replit's servers with full access to runtime behavior
+- Platform has access to environment variables and secrets
+- Public repls explicitly part of training datasets
+
+**Notes:** Current privacy policy does not describe an AI-training opt-out; Do Not Sell/Share link and email requests are the documented controls. Private repls may limit use in public training datasets but code is still on Replit servers.
 
 ## Evidence
 
-- Replit Privacy Policy: https://replit.com/site/privacy
-- Replit Terms of Service: https://replit.com/site/terms
-- Replit AI training disclosure: https://blog.replit.com (various blog posts on AI/ML training)
-- Ghostwriter/Agent documentation: https://docs.replit.com
+- Privacy Policy (2026-08-03): https://replit.com/privacy-policy
+- Terms of Service: https://replit.com/site/terms
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-checked privacy policy (2026-08-03): Google Analytics named; no AI-training opt-out described.

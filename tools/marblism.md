@@ -4,46 +4,53 @@
 |-------|-------|
 | Website | https://www.marblism.com/ |
 | Repository | Closed source |
-| Category | AI Full-Stack App Generator |
+| Category | AI Employees platform (formerly AI app generator) |
 | Telemetry | Yes |
-| Default State | ON |
-| Analytics Providers | Custom (Marblism servers) |
-| Disable Method | Opt-out page available |
-| Collects Code | Yes (generated code processed server-side) |
+| Default State | SaaS-inherent |
+| Analytics Providers | Unnamed analytics and advertising partners (privacy policy), Google Tag Manager (website) |
+| Disable Method | No product telemetry opt-out; browser cookie controls and marketing unsubscribe only |
+| Collects Code | Yes (all processing server-side) |
 | Collects Prompts | Yes |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- App descriptions and specifications provided by user
-- Generated code (processed on Marblism servers)
-- Usage analytics
-- Account and session data
-- Project metadata
+- Account, contact and payment data
+- Usage data: IP address, device, browser, OS, interactions
+- AI agent inputs, outputs and interactions
+- When Google is connected: Gmail metadata and content, Calendar events, Drive/Docs/Sheets metadata and content
+- Cookies and similar tracking (Google Tag Manager on the website)
 
 ## What Is NOT Collected
 
-- Not documented in detail
+- Google Workspace data is not used to train generalized AI/ML models (per policy)
+- Analytics and advertising providers are not named
 
 ## How to Fully Opt Out
 
-1. **Opt-out page:** Marblism provides an opt-out page for data collection preferences
-2. **Account deletion:** Request account and data deletion
-3. **Note:** Core functionality requires server-side code generation
+1. **Cookies:** browser settings
+2. **Marketing:** unsubscribe links
+3. **Google data:** revoke access in your Google account
+4. **Deletion:** email support@marblism.com
+5. **Core processing:** no opt-out (cloud service)
 
 ## Red Flags
 
-- All code generation happens server-side
-- App descriptions reveal project details
-- Closed source -- cannot verify data handling
-- Limited documentation on data retention
+- Product now processes email, calendar and document contents when Google is connected
+- Analytics and advertising providers are not named in the privacy policy
+- No retention period stated
+- Closed source
+
+## Notes
+
+Pivoted from AI app/code generation to 'AI employees' (email, social, SEO, receptionist, website builder). Kept for continuity. Reclassified from ON to SaaS-inherent because all processing is server-side. The privacy policy says Google Workspace data is not used to train generalized AI models.
 
 ## Evidence
 
-- Website: https://www.marblism.com/
-- Opt-out page referenced in privacy policy
-- Server-side generation architecture
+- Privacy policy (effective 2025-01-01): https://www.marblism.com/privacy-policy
+- Homepage (AI employees; GTM-PSRS2HC6), checked 2026-10-20: https://www.marblism.com/
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Product pivoted to AI employees; reclassified ON -> SaaS-inherent; added privacy policy URL and Google-data collection.

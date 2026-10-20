@@ -6,39 +6,38 @@
 | Repository | https://github.com/BuilderIO/ai-shell |
 | Category | CLI AI Assistant |
 | Telemetry | No |
-| Default State | OFF |
+| Default State | N/A |
 | Analytics Providers | None |
-| Disable Method | N/A |
+| Disable Method | N/A (no telemetry to disable) |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Nothing. AI Shell does not include telemetry or analytics.
+- Nothing.
 
 ## What Is NOT Collected
 
 - No usage analytics
-- No shell commands
-- No prompts or completions
-- No crash reports
-- No user identifiers
+- No error reporting
+- No machine identifiers
+- Prompts go only to the OpenAI-compatible API you configure
 
 ## How to Fully Opt Out
 
-No action required. There is no telemetry to disable.
+1. No action required.
 
 ## Red Flags
 
-None identified. Prompts go directly to OpenAI API using user's own key.
+- None identified.
 
 ## Evidence
 
-- Repository: https://github.com/BuilderIO/ai-shell
-- No analytics dependencies in package.json
-- No telemetry code in source
+- Dependencies: https://github.com/BuilderIO/ai-shell/blob/8e4a29b2defabc191d9ae9e117c96b78f6f9de6b/package.json
+- Source grep at 8e4a29b: no telemetry
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified, no change.

@@ -40,7 +40,7 @@ Use the [new-tool issue template](https://github.com/yourusername/agent-snitch-l
 
 1. **Fork the repo** and create a branch: `add-<tool-slug>`
 2. **Create the tool page** at `tools/<tool-slug>.md` using the template below
-3. **Add the tool** to the summary table in `README.md` (maintain sort order: by default state, then alphabetical within each group)
+3. **Add the tool** to `data/tools.json`, then run `npm ci && npm run readme` to regenerate the README counts and summary table (do not edit the generated sections by hand)
 4. **Submit a PR** with a clear description of your findings
 
 ### Tool Page Template
@@ -92,7 +92,7 @@ Create `tools/<tool-slug>.md` with the following structure:
 Things change. Tools add telemetry, remove it, change providers, or update their opt-out mechanisms. If you've found that an entry is outdated:
 
 1. **Open an issue** using the [update-tool template](https://github.com/yourusername/agent-snitch-list/issues/new?template=update-tool.yml), OR
-2. **Submit a PR** updating both the tool page (`tools/<slug>.md`) and the README summary table
+2. **Submit a PR** updating the tool page (`tools/<slug>.md`) and its entry in `data/tools.json`, then regenerate the README with `npm run readme`
 
 When updating, please include:
 - The **version number** where the change occurred
@@ -148,15 +148,15 @@ Contributions are stronger with better evidence. Here's what we look for:
 
 1. **One tool per PR** — Makes review manageable
 2. **Include evidence** — Link to source code, attach captures, cite documentation
-3. **Maintain sort order** — The README table is sorted by default state (🔴 first, then 🔵/☁️, then 🟡, then 🟢, then ⚫), then alphabetically within each group
-4. **Update both files** — If you create/update `tools/<slug>.md`, also update the README summary table
+3. **Regenerate, don't hand-sort** — `npm run readme` sorts the README table by default state (🔴 first, then 🔵/☁️, then 🟡, then 🟢, then ⚫), then alphabetically within each group
+4. **Update all three** — If you create/update `tools/<slug>.md`, also update `data/tools.json` and regenerate the README
 5. **Be factual** — Describe what the tool does, not what you think about it
 6. **Review cycle** — At least one maintainer will review your PR. We may ask for clarification or additional evidence.
 
 ### PR Checklist
 
 - [ ] Tool page created/updated at `tools/<slug>.md`
-- [ ] README summary table updated (correct sort order)
+- [ ] `data/tools.json` entry updated and README regenerated with `npm run readme`
 - [ ] At least one piece of strong or two pieces of medium evidence provided
 - [ ] Version number and verification date included
 - [ ] Disable instructions are accurate and tested

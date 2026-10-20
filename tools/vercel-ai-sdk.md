@@ -2,45 +2,42 @@
 
 | Field | Value |
 |-------|-------|
-| Website | https://sdk.vercel.ai/ |
+| Website | https://ai-sdk.dev/ |
 | Repository | https://github.com/vercel/ai |
 | Category | AI Application SDK |
 | Telemetry | No (SDK itself); user-facing OTLP is opt-in |
 | Default State | OFF |
-| Analytics Providers | None (OTLP is user-controlled) |
-| Disable Method | N/A (no telemetry to disable) |
+| Analytics Providers | None |
+| Disable Method | N/A |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Nothing by default. The SDK does not phone home.
-- **User-facing OTLP:** The SDK provides OpenTelemetry instrumentation that developers can optionally enable to trace their own AI applications. This sends data to the developer's own configured OTLP endpoint, not to Vercel.
+- Nothing by default. Telemetry hooks (OpenTelemetry tracing channel and registered integrations) only send data to destinations you configure, and honor `isEnabled: false`.
 
 ## What Is NOT Collected
 
-- No usage analytics sent to Vercel
-- No prompts or completions
-- No code
-- No crash reports
-- No user identifiers
+- No analytics or crash reporting to Vercel from the SDK
 
 ## How to Fully Opt Out
 
-No action required. The SDK has no built-in telemetry. The OTLP support is a developer tool for tracing their own applications and only activates when explicitly configured with an endpoint.
+No action required. To keep LLM traffic off Vercel AI Gateway, configure an explicit provider (or `globalThis.AI_SDK_DEFAULT_PROVIDER`) instead of plain string model IDs.
 
 ## Red Flags
 
-None identified. The SDK is a clean library with no phone-home behavior. Note that deploying applications on Vercel's platform involves separate Vercel platform telemetry, which is independent of this SDK.
+- Plain string model IDs without a configured default provider are routed to Vercel AI Gateway (ai-gateway.vercel.sh) -- LLM traffic rather than telemetry, but it sends prompts to Vercel
+
+**Notes:** Telemetry hooks (OpenTelemetry/integrations) are opt-in and send data only to destinations you configure. Deploying apps on Vercel's platform involves separate Vercel platform telemetry, independent of this SDK.
 
 ## Evidence
 
-- Repository: https://github.com/vercel/ai
-- No analytics dependencies in package.json
-- OTLP support documented as opt-in developer tooling
-- No outbound telemetry in source code
+- Repository (ai@7.0.146): https://github.com/vercel/ai/tree/f2876d0b48517990f22dfa2a2738e764b78ea0bf
+- packages/ai/src/telemetry/create-telemetry-dispatcher.ts (isEnabled gate)
+- packages/ai/src/model/resolve-model.ts (default provider = gateway); packages/gateway/src/gateway-provider.ts (`https://ai-gateway.vercel.sh/v4/ai`)
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified at ai@7.0.146: no telemetry; added note that string model IDs route to Vercel AI Gateway by default (LLM traffic, not telemetry).

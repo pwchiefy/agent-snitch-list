@@ -11,7 +11,7 @@
 | Disable Method | N/A |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
@@ -40,7 +40,9 @@ None identified for the core open-source library. LlamaCloud/LlamaParse are sepa
 - No analytics dependencies in core library
 - No telemetry module in source tree
 - LlamaCloud is a separate product with its own terms
+- llama-index-core at https://github.com/run-llama/llama_index/tree/619d74664e8404612038bc15a1a40c686037277c/llama-index-core -- no analytics SDKs or telemetry module
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified, no change.

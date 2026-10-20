@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | Website | https://swe-agent.com |
-| Repository | https://github.com/princeton-nlp/SWE-agent |
+| Repository | https://github.com/SWE-agent/SWE-agent |
 | Category | AI Software Engineering Agent (Academic) |
 | Telemetry | No |
 | Default State | N/A |
@@ -11,36 +11,33 @@
 | Disable Method | N/A (no telemetry to disable) |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Nothing. SWE-agent is an academic research tool from Princeton NLP that does not implement any telemetry or analytics.
+- Nothing.
 
 ## What Is NOT Collected
 
 - No usage analytics
 - No error reporting
-- No code or file contents
-- No prompts or LLM responses
 - No machine identifiers
-- No network calls to analytics services
+- Prompts go only to the LLM API you configure
 
 ## How to Fully Opt Out
 
-No action required. SWE-agent has no telemetry infrastructure. It is a research tool that runs locally and communicates only with user-configured LLM API endpoints.
+1. No action required.
 
 ## Red Flags
 
-None identified. As an academic research project from Princeton University, the tool is focused on reproducible research and does not include commercial analytics infrastructure.
+- None identified. Note the maintainers now recommend mini-swe-agent (not audited here).
 
 ## Evidence
 
-- Codebase contains no analytics SDKs or telemetry modules
-- No PostHog, Sentry, Amplitude, or similar dependencies in requirements
-- Repository: https://github.com/princeton-nlp/SWE-agent
-- Academic paper: https://arxiv.org/abs/2405.15793
+- Source grep at 3ea751c: no analytics/telemetry SDKs (https://github.com/SWE-agent/SWE-agent/tree/3ea751c087f32b16e039a2233dd6eefecef325d5)
+- README recommendation of mini-swe-agent: https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/README.md#L20
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified, no telemetry. Repo moved to SWE-agent/SWE-agent; noted mini-swe-agent recommendation.

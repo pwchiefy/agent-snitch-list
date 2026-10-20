@@ -7,50 +7,48 @@
 | Category | AI Full-Stack App Generator (SaaS) |
 | Telemetry | Yes |
 | Default State | ON |
-| Analytics Providers | Multiple (inferred: standard SaaS analytics stack) |
-| Disable Method | No documented opt-out |
+| Analytics Providers | Multiple (standard SaaS analytics stack) |
+| Disable Method | Training (Free/Pro): Account settings > Preferences > AI model training |
 | Collects Code | Yes |
 | Collects Prompts | Yes |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- All prompts and instructions submitted by users
-- All generated code and application output
-- User account information (email, authentication data)
-- Session and usage analytics (page views, clicks, feature usage)
-- Browser and device information
-- Project metadata (names, creation dates, deployment status)
-- Error reports and application logs
-- Payment and billing information
-- Third-party integration data (GitHub connections, deployment targets)
+- All prompts and instructions
+- All generated code and project data
+- Account information, session/usage analytics, browser/device info
+- Error reports, billing data, third-party integration data
+
+**Model training (effective 2026-09-09):** Free and Pro customer data may be used to train, develop and improve Lovable's AI models unless the user opts out. Business and Enterprise workspace data is excluded by default.
 
 ## What Is NOT Collected
 
-- No specific exclusions documented. As a fully hosted SaaS platform, Lovable has access to all data processed through the service.
+- Business/Enterprise workspace data is excluded from AI model training by default
 
 ## How to Fully Opt Out
 
-There is no documented opt-out mechanism for telemetry or data collection. Lovable is a fully hosted SaaS platform, and data collection is integral to the service.
-
-The only way to avoid data collection is to not use the service.
+1. **Free/Pro training opt-out:** Account settings > Preferences > AI model training > turn off **Use my Lovable content for model training** (applies going forward only)
+2. **Can't log in:** email privacy@lovable.dev
+3. **Business/Enterprise:** excluded from training by default
+4. **Service analytics:** no documented opt-out
 
 ## Red Flags
 
-- No opt-out mechanism for telemetry or analytics
-- All code and prompts are processed and stored on Lovable's servers
-- Closed source: no way to verify what data is collected or how it is handled
-- No public documentation on data retention periods
-- Terms of service should be reviewed carefully for data usage rights (potential training on user-generated code)
-- No self-hosted option available
-- Extensive data collection with no granular controls for enterprise users
+- Free and Pro customer data may be used to train Lovable's AI models by default (effective 2026-09-09); opt-out is not retroactive
+- All code and prompts processed and stored on Lovable servers
+- No documented opt-out for service usage analytics
+- Closed source: no way to verify data handling
+- No self-hosted option
+
+**Notes:** Business and Enterprise workspace data is excluded from AI model training by default per Lovable docs.
 
 ## Evidence
 
+- Lovable training/opt-out docs: https://docs.lovable.dev/features/business/data-opt-out
 - Privacy Policy: https://lovable.dev/privacy
-- Terms of Service: https://lovable.dev/terms
-- Closed source platform; no source code available for review
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Documented the Free/Pro model-training default (effective 2026-09-09) and the in-app opt-out toggle; replaced 'no opt-out mechanism' red flag.

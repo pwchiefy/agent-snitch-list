@@ -38,6 +38,10 @@
 - Closed source with limited transparency
 - Cookie-based tracking on web platform
 
+## Notes
+
+Site still online (2026-10-20) but now titled 'Build websites and apps without code'. Telemetry and data claims below were not re-verified: the privacy page is a JavaScript app and returned no readable text.
+
 ## Evidence
 
 - Website: https://www.codejet.ai/
@@ -47,3 +51,4 @@
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Site existence re-checked (now 'Build websites and apps without code'); telemetry claims could not be re-verified (JavaScript-only privacy page); Last Verified left at 2026-03-23

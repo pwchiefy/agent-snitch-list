@@ -11,7 +11,7 @@
 | Disable Method | N/A (no telemetry to disable in OSS) |
 | Collects Code | No (in OSS version) |
 | Collects Prompts | No (in OSS version) |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
@@ -47,12 +47,18 @@ pnpm run dev
 - The hosted service (bolt.new website) is a separate product from the OSS codebase and likely includes analytics not present in the open-source version
 - Self-hosting requires providing your own LLM API keys
 
+**Status (2026-10-20):** The open-source repo has had no commits since 2024-12-17 and reflects the original open-source release. The hosted bolt.new product is a separate, proprietary StackBlitz SaaS and is not covered by the OFF classification; its data handling is governed by the StackBlitz privacy policy. Self-hosting requires providing your own LLM API keys.
+
 ## Evidence
 
 - No PostHog, Sentry, Google Analytics, or similar dependencies in `package.json`
 - No analytics initialization code in the source
 - Repository: https://github.com/stackblitz/bolt.new
+- Repository at last commit: https://github.com/stackblitz/bolt.new/tree/eda10b121221b30825a4c16eec5da1fd3eb1eb99
+- No PostHog / Sentry / Segment / Amplitude / Statsig / Google Analytics in package.json
+- Hosted service privacy policy: https://stackblitz.com/privacy-policy
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified OSS repo (no analytics); noted repo inactive since 2024-12-17 and that hosted bolt.new is a separate proprietary SaaS; added StackBlitz privacy URL.

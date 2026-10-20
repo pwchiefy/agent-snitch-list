@@ -3,58 +3,53 @@
 | Field | Value |
 |-------|-------|
 | Website | https://aider.chat |
-| Repository | https://github.com/paul-gauthier/aider |
+| Repository | https://github.com/Aider-AI/aider |
 | Category | AI Coding Assistant (CLI) |
 | Telemetry | Yes |
 | Default State | Opt-in |
 | Analytics Providers | PostHog |
-| Disable Method | `--analytics-disable` flag or config setting |
+| Disable Method | `--analytics-disable` flag, `--no-analytics`, or config/env setting |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Operating system and platform info
-- Python version
-- Aider version
-- LLM model name used
-- Session start/end events
-- Feature usage events (e.g., which commands are run)
-- Edit format used (diff, whole, etc.)
-- Repository language mix (language names only, not code)
-- Randomized anonymous user ID (hashed machine identifier)
+- Nothing unless you opt in. After opt-in:
+- Random anonymous UUID4 user ID (stored in `~/.aider/analytics.json`)
+- OS platform, release and machine architecture; Python version; Aider version
+- Main/weak/editor model names (names not in Aider's model database are redacted, e.g. `provider/REDACTED`)
+- Edit format, token usage and feature/command usage events
+- Exit reasons and exception information (PostHog `enable_exception_autocapture=True`)
 
 ## What Is NOT Collected
 
 - Source code or file contents
-- Prompts or LLM responses
-- File names or paths
-- Repository URLs or names
+- Chat messages, prompts or LLM responses
 - API keys or credentials
-- Git history or diffs
+- Personal information (per Aider's analytics documentation)
 
 ## How to Fully Opt Out
 
-1. **At the prompt:** When aider asks if you'd like to share analytics (~10% of first runs), decline.
-2. **CLI flag:** Run aider with `--analytics-disable`
-3. **Config file:** Add to `.aider.conf.yml`:
-   ```yaml
-   analytics-disable: true
-   ```
-4. **Environment variable:** `AIDER_ANALYTICS_DISABLE=true`
+1. **Decline the prompt** when Aider asks (only ~10% of new users are asked).
+2. **Permanent:** `aider --analytics-disable` (writes `permanently_disable` to `~/.aider/analytics.json`).
+3. **Per session:** `aider --no-analytics`.
+4. **Config/env:** `analytics-disable: true` in `.aider.conf.yml`, or `AIDER_ANALYTICS_DISABLE=true` (Aider maps `AIDER_`-prefixed env vars to flags).
 
 ## Red Flags
 
-- The opt-in prompt only appears for approximately 10% of new users, which means 90% of users are never asked and never have telemetry enabled. This is a reasonable approach but could confuse users who hear about telemetry but never see the prompt.
+- The consent prompt is shown to roughly 10% of new users (UUID-sampled). Users who are never asked send nothing, but they may not realise analytics exist.
+- Once opted in, PostHog exception autocapture is enabled, so exception details are sent.
 
 ## Evidence
 
-- Analytics implementation: `aider/analytics.py` (PostHog integration)
-- Consent logic: `aider/main.py` (random sampling for opt-in prompt)
-- Privacy documentation: https://aider.chat/docs/more/analytics.html
-- PostHog project key visible in source code
+- Analytics implementation (PostHog key, host, sampling, consent): https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/analytics.py
+- Consent prompt and enable logic: https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/main.py#L642
+- CLI flags: https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/args.py#L569
+- Documentation: https://aider.chat/docs/more/analytics.html
+- Repository moved: https://github.com/paul-gauthier/aider now redirects to https://github.com/Aider-AI/aider
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified against source at 5dc9490. Repo moved to Aider-AI/aider; corrected data-collected list (removed unverified 'repo language mix'; added exception autocapture and model-name redaction); added `--no-analytics` and env-var opt-out; noted latest release v0.86.0.

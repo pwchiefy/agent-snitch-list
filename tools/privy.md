@@ -6,40 +6,38 @@
 | Repository | https://github.com/cosmosinnovate/privy |
 | Category | AI Code Completion (Local) |
 | Telemetry | No |
-| Default State | OFF |
+| Default State | N/A |
 | Analytics Providers | None |
-| Disable Method | N/A |
+| Disable Method | N/A (no telemetry to disable) |
 | Collects Code | No |
 | Collects Prompts | No |
-| Last Verified | 2026-03-23 |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Nothing. Privy runs entirely locally with no telemetry.
+- Nothing. Communicates only with a local Ollama server.
 
 ## What Is NOT Collected
 
 - No usage analytics
-- No code or prompts (all processing is on-device)
-- No crash reports
-- No user identifiers
-- No network calls to external services (beyond local LLM)
+- No error reporting
+- No machine identifiers
+- No cloud LLM calls
 
 ## How to Fully Opt Out
 
-No action required. Privy is designed as a fully local, privacy-first alternative to cloud-based code assistants. There is no telemetry to disable.
+1. No action required.
 
 ## Red Flags
 
-None identified. The entire value proposition is local/private operation. Uses local LLMs (e.g., Ollama) so no data ever leaves the machine.
+- No telemetry; project inactive since August 2024.
 
 ## Evidence
 
-- Repository: https://github.com/cosmosinnovate/privy
-- No analytics dependencies
-- Architecture is fully local by design
-- VS Code extension communicates only with local LLM server
+- Dependencies: https://github.com/cosmosinnovate/privy/blob/cd46f2a4d6c0b92300e5b2b349df6b2811e6c5ea/package.json
+- Similarly named project also clean: https://github.com/srikanth235/privy/tree/f389e03ffc93458d6d763b08bdbe384980c30ce5
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Re-verified, no telemetry. Flagged that srikanth235/privy is the more widely used project of the same name (also clean).

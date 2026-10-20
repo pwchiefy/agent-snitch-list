@@ -3,50 +3,46 @@
 | Field | Value |
 |-------|-------|
 | Website | https://refact.ai/ |
-| Repository | https://github.com/smallcloudai/refact |
+| Repository | https://github.com/smallcloudai/refact (archived); active: https://github.com/JegernOUTT/refact |
 | Category | AI Code Completion / Chat |
-| Telemetry | Yes |
-| Default State | ON |
-| Analytics Providers | Custom (hourly batch telemetry to Refact servers) |
-| Disable Method | Set `basic_telemetry: false` in configuration |
-| Collects Code | No (in self-hosted mode) |
-| Collects Prompts | No (in self-hosted mode) |
-| Last Verified | 2026-03-23 |
+| Telemetry | No (current releases) |
+| Default State | N/A |
+| Analytics Providers | None |
+| Disable Method | N/A |
+| Collects Code | No |
+| Collects Prompts | No |
+| Last Verified | 2026-10-20 |
 
 ## What Is Collected
 
-- Completion acceptance/rejection rates (batched hourly)
-- Feature usage statistics
-- Language and file type distribution
-- Error rates and types
-- Version and environment info
-- In cloud mode: code context is sent to Refact servers for completion
+- Nothing is sent to Refact in current code.
+- Optional performance diagnostics (aggregate timings/counters) are held in bounded local memory, disabled by default, and visible on a local Performance page.
+- Historical: older plugin/LSP versions had `basic_telemetry` (hourly batched usage stats) on by default, and Refact Cloud processed code server-side.
 
 ## What Is NOT Collected
 
-- In self-hosted mode: no code or prompts leave your infrastructure
-- Basic telemetry does not include code content
-- No PII in telemetry payloads
+- No snippet telemetry (per docs)
+- No usage analytics to Refact
+- Code/prompts go only to your configured provider or local runtime
 
 ## How to Fully Opt Out
 
-1. **Configuration file:** Set `basic_telemetry: false` in the Refact configuration
-2. **Self-hosted mode:** Deploy the Refact server locally to keep all code on-premises
-3. **Network block:** Block outbound connections to Refact telemetry endpoints
+1. No action needed on current releases.
+2. On older versions, set `basic_telemetry: false` or upgrade.
 
 ## Red Flags
 
-- Telemetry is ON by default
-- Cloud mode sends code to Refact servers (expected for SaaS, but worth noting)
-- Hourly batch upload means data accumulates before transmission
+- Original repo archived; development continues in a personal fork.
+- Older installs may still have `basic_telemetry` enabled.
 
 ## Evidence
 
-- Repository: https://github.com/smallcloudai/refact
-- Telemetry configuration documented in source
-- `basic_telemetry` setting in config files
-- Self-hosted deployment option available
+- Archive README: https://github.com/smallcloudai/refact/blob/27f86def9423b1153f1ff857a51329a88bbbe292/README.md
+- Successor local perf diagnostics: https://github.com/JegernOUTT/refact/blob/0d096c958c6d1af9b702e48607adab03cc689c86/refact-agent/engine/src/chat/perf_telemetry.rs
+- Successor release notes (aggregate-only, disabled by default): https://github.com/JegernOUTT/refact/blob/0d096c958c6d1af9b702e48607adab03cc689c86/docs/release-notes/v8.6.0.md#L57
+- Docs: 'Refact does not send snippet telemetry': https://github.com/smallcloudai/refact/blob/27f86def9423b1153f1ff857a51329a88bbbe292/docs/src/content/docs/features/code-completion.md#L34
 
 ## Changelog
 
 - 2026-03-23: Initial entry
+- 2026-10-20: Repo archived; Refact Cloud retired; remote telemetry no longer present in current code. Reclassified ON -> no telemetry for current releases.
